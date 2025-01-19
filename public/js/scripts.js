@@ -193,14 +193,6 @@ jQuery(function ($) {
   
 });
 
-$('.scrollContainer').on('scroll load', function () {
-  if ($(this).scrollTop() > 0) {
-    $('.header').addClass('is-sticky');
-  } else {
-    $('.header').removeClass('is-sticky');
-  }
-});
-
 jQuery(function ($) {
 
   var mq = window.matchMedia( "(min-width: 767.98px)" );
@@ -232,7 +224,12 @@ jQuery(function ($) {
   
 });
 
-jQuery(function ($) {
+$('.scrollContainer').on('scroll load', function () {
+  if ($(this).scrollTop() > 0) {
+    $('.header').addClass('is-sticky');
+  } else {
+    $('.header').removeClass('is-sticky');
+  }
 });
 
 jQuery(function ($) {
@@ -261,6 +258,9 @@ jQuery(function ($) {
     $(this).valid();
   });
   
+});
+
+jQuery(function ($) {
 });
 
 var scrollContainer = document.getElementById('scrollContainer');
