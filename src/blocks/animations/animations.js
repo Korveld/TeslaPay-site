@@ -67,7 +67,11 @@ function setupVideos() {
 
   function initializeAllScrollMagic() {
     videos.forEach((video) => {
-      $(video).height($(window).height() - 40);
+      $(video).height(
+        (typeof window.outerHeight != 'undefined') ? 
+          Math.max(window.outerHeight, $(window).height()) : 
+          $(window).height() - 40
+      );
       var video_section = video.closest('section');
       var triggerElement = `#${video_section.id}`;
       var duration;
