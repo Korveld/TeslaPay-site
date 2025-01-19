@@ -2,7 +2,7 @@ var controller = new ScrollMagic.Controller();
 
 // All videos animations logic
 function initializeScrollMagic(video, video_section, triggerElement, duration, offset = 0) {
-  var videoDuration = video.duration; // Get video duration
+  var videoDuration = video.duration;
 
   // Create a ScrollMagic scene
   new ScrollMagic.Scene({
@@ -14,31 +14,55 @@ function initializeScrollMagic(video, video_section, triggerElement, duration, o
     .on('progress', (e) => {
       // Map scroll progress to video time
       video.currentTime = e.progress * videoDuration;
-
+      
       // Pause the video to prevent auto-play behavior
       video.pause();
     })
-    .addTo(controller); // Add the scene to the controller
+    .addTo(controller);
 }
 
 function setupVideos() {
   var videos = document.querySelectorAll('.js-video');
   var mqMob = window.matchMedia("(max-width: 768px)");
   var loadedCount = 0;
+  var timeoutFallback = 5000; // 5 seconds fallback timer
 
-  // Function to check if all videos are loaded
   function checkAllVideosLoaded() {
     loadedCount++;
     if (loadedCount === videos.length) {
-      // All videos are loaded, show the page content
-      document.querySelector('.scrollContainer').style.visibility = 'visible';
-      initializeAllScrollMagic(); // Initialize ScrollMagic after all videos are loaded
+      showPageAndInitialize();
     }
   }
 
-  // Attach 'loadeddata' event to each video
+  function forceVideoLoad(video) {
+    video.play()
+      .then(() => {
+        video.pause();
+      })
+      .catch(error => {
+        console.error("Error forcing video to load:", error);
+      });
+  }
+
+  function showPageAndInitialize() {
+    clearTimeout(fallbackTimer);
+    document.querySelector('.scrollContainer').style.visibility = 'visible';
+    initializeAllScrollMagic();
+  }
+
+  var fallbackTimer = setTimeout(() => {
+    console.warn("Fallback triggered: Not all videos loaded in time");
+    showPageAndInitialize();
+  }, timeoutFallback);
+
   videos.forEach(video => {
-    video.addEventListener('loadeddata', checkAllVideosLoaded);
+    if (video.readyState >= 2) {
+      checkAllVideosLoaded();
+    } else {
+      forceVideoLoad(video);
+      video.addEventListener('loadeddata', checkAllVideosLoaded);
+      video.addEventListener('error', checkAllVideosLoaded); // Handle errors
+    }
   });
 
   function initializeAllScrollMagic() {
