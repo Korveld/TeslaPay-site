@@ -37,6 +37,7 @@ function setupVideos() {
   function forceVideoLoad(video) {
     video.play()
       .then(() => {
+        console.log('video loaded:', video);
         video.pause();
       })
       .catch(error => {
@@ -57,6 +58,7 @@ function setupVideos() {
 
   videos.forEach(video => {
     if (video.readyState >= 2) {
+      forceVideoLoad(video);
       checkAllVideosLoaded();
     } else {
       forceVideoLoad(video);
