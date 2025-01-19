@@ -23,41 +23,54 @@ function initializeScrollMagic(video, video_section, triggerElement, duration, o
 
 function setupVideos() {
   var videos = document.querySelectorAll('.js-video');
-  var mqMob = window.matchMedia( "(max-width: 768px)" );
-  videos.forEach((video) => {
-    $(video).height($(window).height() - 40);
-    var video_section = video.closest('section');
-    var triggerElement = `#${video_section.id}`;
-    var duration;
-    var offset;
-    
-    if (video.id === 'video2') {
-      duration = 500;
-      offset = -300;
-    }
+  var mqMob = window.matchMedia("(max-width: 768px)");
+  var loadedCount = 0;
 
-    if (video.id === 'video3') {
-      offset = -300;
+  // Function to check if all videos are loaded
+  function checkAllVideosLoaded() {
+    loadedCount++;
+    if (loadedCount === videos.length) {
+      // All videos are loaded, show the page content
+      document.querySelector('.scrollContainer').style.visibility = 'visible';
+      initializeAllScrollMagic(); // Initialize ScrollMagic after all videos are loaded
     }
+  }
 
-    if (mqMob.matches) {
-      if (video.id === 'video2') {
-        duration = 400;
-        offset = -250;
-      }
-      if (video.id === 'video3') {
-        offset = -100;
-      }
-    }
-
-    if (video.readyState >= 1) {
-      initializeScrollMagic(video, video_section, triggerElement, duration, offset);
-    } else {
-      video.addEventListener('loadedmetadata', () => {
-        initializeScrollMagic(video, video_section, triggerElement, duration, offset);
-      });
-    }
+  // Attach 'loadeddata' event to each video
+  videos.forEach(video => {
+    video.addEventListener('loadeddata', checkAllVideosLoaded);
   });
+
+  function initializeAllScrollMagic() {
+    videos.forEach((video) => {
+      $(video).height($(window).height() - 40);
+      var video_section = video.closest('section');
+      var triggerElement = `#${video_section.id}`;
+      var duration;
+      var offset;
+
+      if (video.id === 'video2') {
+        duration = 500;
+        offset = -300;
+      }
+
+      if (video.id === 'video3') {
+        offset = -300;
+      }
+
+      if (mqMob.matches) {
+        if (video.id === 'video2') {
+          duration = 400;
+          offset = -250;
+        }
+        if (video.id === 'video3') {
+          offset = -100;
+        }
+      }
+
+      initializeScrollMagic(video, video_section, triggerElement, duration, offset);
+    });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', setupVideos);
@@ -151,6 +164,20 @@ $('.scrollContainer').on('scroll load', function () {
 
 jQuery(function ($) {
 
+  $('.get-app-btn').fancybox({
+    afterShow : function( instance, current ) {
+      $('#phoneFormModal').show();
+      $('.phone-form__success').hide();
+    }
+  });
+  
+});
+
+jQuery(function ($) {
+});
+
+jQuery(function ($) {
+
   var mq = window.matchMedia( "(min-width: 767.98px)" );
   var mqMob = window.matchMedia( "(max-width: 768px)" );
   
@@ -182,35 +209,6 @@ jQuery(function ($) {
 
 jQuery(function ($) {
 
-  $('.get-app-btn').fancybox({
-    afterShow : function( instance, current ) {
-      $('#phoneFormModal').show();
-      $('.phone-form__success').hide();
-    }
-  });
-  
-});
-
-jQuery(function ($) {
-});
-
-var scrollContainer = document.getElementById('scrollContainer');
-
-document.addEventListener("DOMContentLoaded", function(event) {
-  var scrollpos = sessionStorage.getItem('scrollpos');
-  if (scrollpos) {
-    scrollContainer.scrollTo(0, scrollpos);
-    sessionStorage.removeItem('scrollpos');
-  }
-});
-
-window.addEventListener("beforeunload", function (e) {
-  sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
-});
-
-
-jQuery(function ($) {
-
   $('#phoneFormModal').validate({
     errorElement: 'span',
     errorClass: 'not-valid-tip',
@@ -235,4 +233,19 @@ jQuery(function ($) {
     $(this).valid();
   });
   
+});
+
+
+var scrollContainer = document.getElementById('scrollContainer');
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  var scrollpos = sessionStorage.getItem('scrollpos');
+  if (scrollpos) {
+    scrollContainer.scrollTo(0, scrollpos);
+    sessionStorage.removeItem('scrollpos');
+  }
+});
+
+window.addEventListener("beforeunload", function (e) {
+  sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
 });
