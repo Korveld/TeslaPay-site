@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TeslaPay</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./public/css/style.css">
+</head>
+<body>
+
+<div class="scrollContainer" id="scrollContainer">
+  <header class="header">
+    <div class="header__box">
+      <div class="header__box-container">
+        <a href="/" class="header__logo">
+          <img src="/public/img/Logo.svg" alt="">
+        </a>
+
+        <ul class="menu">
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Products</a>
+          </li>
+          <li>
+            <a href="#">Security</a>
+          </li>
+          <li>
+            <a href="#">Plans</a>
+          </li>
+          <li>
+            <a href="#">Support</a>
+          </li>
+          <li>
+            <a href="#">FAQ</a>
+          </li>
+        </ul>
+
+        <div class="lang-switcher">
+          <button type="button" class="lang-switcher__current">
+            <img src="/public/img/flags/flag-fr.svg" alt="">
+            <span>French</span>
+          </button>
+          <div class="lang-switcher__overflow"></div>
+          <ul class="lang-switcher__dropdown">
+            <li class="lang-switcher__dropdown-item">
+              <a href="#">
+                <img src="/public/img/flags/flag-fr.svg" alt="">
+                <span>French</span>
+              </a>
+            </li>
+            <li class="lang-switcher__dropdown-item">
+              <a href="#">
+                <img src="/public/img/flags/flag-en.svg" alt="">
+                <span>English</span>
+              </a>
+            </li>
+            <li class="lang-switcher__dropdown-item">
+              <a href="#">
+                <img src="/public/img/flags/flag-it.svg" alt="">
+                <span>Italian</span>
+              </a>
+            </li>
+            <li class="lang-switcher__dropdown-item">
+              <a href="#">
+                <img src="/public/img/flags/flag-de.svg" alt="">
+                <span>Deutsch</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="md:pt-[305px] md:pb-[228px] py-[125px] relative">
+      <div class="container-fluid">
+        <div class="max-w-[1077px] mx-auto">
+          <h1 class="md:mb-[80px] mb-[40px] uppercase">Your money, simplified.<br>
+            Instant access,<br>
+            your global control.</h1>
+          <p>Manage your finances anytime, anywhere with seamless digital banking.<br>
+            No borders, no hassle — just full control of your money, globally and securely.</p>
+        </div>
+      </div>
+
+      <a href="#modalApp" data-fancybox data-touch="false" class="get-app-btn">
+        <img src="./public/img/btn-logo.svg" alt="">
+        Get the app
+      </a>
+    </section>
+
+    <section class="py-[20px] px-4 md:h-[4000px] h-[3000px] relative" id="videoSection1">
+      <video id="video1" class="video js-video" muted>
+        <source src="./public/videos/Video1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </section>
+    
+    <section class="md:pt-[120px] md:pb-[80px] py-[64px]">
+      <div class="container">
+        <div class="badge md:mb-[70px] mdMax:hidden">
+          <span>Accounts</span>
+        </div>
+        <div class="grid grid-cols-1 md:gap-[192px] gap-[76px]">
+          <div>
+            <h2 class="md:mb-[100px] mb-[36px]" id="trigger_animate_icon_1">The bank account<br>
+              for your <span class="text-gold">everyday life</span></h2>
+            <picture>
+              <source
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="./public/img/webp/icon-01.webp"
+                type="image/webp" />
+              <img
+                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-src="./public/img/icon-01.png"
+                width="182" height="200"
+                class="lazyload mdMax:w-[80px] animate-icon1"
+                id="animate_icon_1"
+                alt="" />
+            </picture>
+          </div>
+
+          <div>
+            <h2 class="md:mb-[100px] mb-[36px]" id="trigger_animate_icon_2">Transferring money<br>
+              just <span class="text-gold">got easier</span></h2>
+            <picture>
+              <source
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="./public/img/webp/icon-02.webp"
+                type="image/webp" />
+              <img
+                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-src="./public/img/icon-02.png"
+                width="183" height="183"
+                class="lazyload mdMax:w-[81px] animate-icon2"
+                id="animate_icon_2"
+                alt="" />
+            </picture>
+          </div>
+
+          <div>
+            <h2 class="md:mb-[100px] mb-[36px]" id="trigger_animate_icon_3">One account —<br>
+              up to <span class="text-gold">10 linked cards</span></h2>
+            <div class="animate-cards">
+              <picture>
+                <source
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/icon-card.webp"
+                  type="image/webp" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/icon-card.png"
+                  width="182" height="173"
+                  class="lazyload mdMax:w-[100px]"
+                  alt="" />
+              </picture>
+              <picture>
+                <source
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/icon-card.webp"
+                  type="image/webp" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/icon-card.png"
+                  width="182" height="173"
+                  class="lazyload mdMax:w-[100px] js-animate-card"
+                  alt="" />
+              </picture>
+              <picture>
+                <source
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/icon-card.webp"
+                  type="image/webp" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/icon-card.png"
+                  width="182" height="173"
+                  class="lazyload mdMax:w-[100px] js-animate-card"
+                  alt="" />
+              </picture>
+              <picture>
+                <source
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/icon-card.webp"
+                  type="image/webp" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/icon-card.png"
+                  width="182" height="173"
+                  class="lazyload mdMax:w-[100px] js-animate-card"
+                  alt="" />
+              </picture>
+              <picture>
+                <source
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/icon-card.webp"
+                  type="image/webp" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/icon-card.png"
+                  width="182" height="173"
+                  class="lazyload mdMax:w-[100px] js-animate-card"
+                  alt="" />
+              </picture>
+              <picture>
+                <source
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/icon-card.webp"
+                  type="image/webp" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/icon-card.png"
+                  width="182" height="173"
+                  class="lazyload mdMax:w-[100px] js-animate-card"
+                  alt="" />
+              </picture>
+              <picture>
+                <source
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/icon-card.webp"
+                  type="image/webp" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/icon-card.png"
+                  width="182" height="173"
+                  class="lazyload mdMax:w-[100px] js-animate-card"
+                  alt="" />
+              </picture>
+              <picture>
+                <source
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/icon-card.webp"
+                  type="image/webp" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/icon-card.png"
+                  width="182" height="173"
+                  class="lazyload mdMax:w-[100px] js-animate-card"
+                  alt="" />
+              </picture>
+              <picture>
+                <source
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/icon-card.webp"
+                  type="image/webp" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/icon-card.png"
+                  width="182" height="173"
+                  class="lazyload mdMax:w-[100px] js-animate-card"
+                  alt="" />
+              </picture>
+              <picture>
+                <source
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/icon-card.webp"
+                  type="image/webp" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/icon-card.png"
+                  width="182" height="173"
+                  class="lazyload mdMax:w-[100px] js-animate-card"
+                  alt="" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="md:pt-[200px] md:pb-[145px] py-[48px]">
+      <div class="container">
+        <div class="grid grid-cols-1 md:grid-cols-2 md:gap-[24px] gap-[8px]">
+          <div class="flex flex-col md:gap-[24px] gap-[8px]">
+            <div class="card">
+              <div class="card__img">
+                <picture>
+                  <source
+                    media="(min-width:768px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/webp/card-img1.webp"
+                    type="image/webp" />
+                  <source
+                    media="(min-width:768px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/card-img1.png"
+                    type="image/png" />
+                  <source 
+                    media="(max-width:767.98px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/webp/card-img-mob1.webp"
+                    type="image/webp" />
+                  <source
+                    media="(max-width:767.98px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/card-img-mob1.png"
+                    type="image/png" />
+                  <img
+                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-src="./public/img/card-img1.png"
+                    width="388" height="358"
+                    class="lazyload pointer-events-none select-none"
+                    alt="" />
+                </picture>
+              </div>
+              <div class="card__text">
+                <h4>Instant<br>
+                  push notifications</h4>
+                <p class="p--md">Full control of actions - receive push notifications about all activities of your account.</p>
+              </div>
+            </div>
+
+            <div class="card card--sm">
+              <div class="card__text">
+                <h4>2FA<br>
+                  identification</h4>
+                <p class="p--md">Full control of actions - receive push notifications about.</p>
+              </div>
+              <div class="card__img">
+                <picture>
+                  <source
+                    media="(min-width:768px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/webp/card-img2.webp"
+                    type="image/webp" />
+                  <source
+                    media="(min-width:768px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/card-img2.png"
+                    type="image/png" />
+                  <source
+                    media="(max-width:767.98px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/webp/card-img-mob2.webp"
+                    type="image/webp" />
+                  <source
+                    media="(max-width:767.98px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/card-img-mob2.png"
+                    type="image/png" />
+                  <img
+                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-src="./public/img/card-img2.png"
+                    width="172" height="271"
+                    class="lazyload pointer-events-none select-none"
+                    alt="" />
+                </picture>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col md:gap-[24px] gap-[8px]">
+            <div class="card card--sm">
+              <div class="card__text">
+                <h4>Biometric identification</h4>
+                <p class="p--md">Full control of actions receive push notifications about all.</p>
+              </div>
+              <div class="card__img">
+                <picture>
+                  <source
+                    media="(min-width:768px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/webp/card-img3.webp"
+                    type="image/webp" />
+                  <source
+                    media="(min-width:768px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/card-img3.png"
+                    type="image/png" />
+                  <source
+                    media="(max-width:767.98px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/webp/card-img-mob3.webp"
+                    type="image/webp" />
+                  <source
+                    media="(max-width:767.98px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/card-img-mob3.png"
+                    type="image/png" />
+                  <img
+                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-src="./public/img/card-img3.png"
+                    width="172" height="271"
+                    class="lazyload pointer-events-none select-none"
+                    alt="" />
+                </picture>
+              </div>
+            </div>
+            
+            <div class="card">
+              <div class="card__img">
+                <picture>
+                  <source
+                    media="(min-width:768px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/webp/card-img4.webp"
+                    type="image/webp" />
+                  <source
+                    media="(min-width:768px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/card-img4.png"
+                    type="image/png" />
+                  <source
+                    media="(max-width:767.98px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/webp/card-img-mob4.webp"
+                    type="image/webp" />
+                  <source
+                    media="(max-width:767.98px)"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="./public/img/card-img-mob4.png"
+                    type="image/png" />
+                  <img
+                    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-src="./public/img/card-img4.png"
+                    width="388" height="358"
+                    class="lazyload pointer-events-none select-none"
+                    alt="" />
+                </picture>
+              </div>
+              <div class="card__text">
+                <h4>Manage and keep<br>
+                  track of your account</h4>
+                <p class="p--md">Full control of actions - receive push notifications about all activities of your account.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="md:pt-[195px] md:pb-[92px] py-[64px]">
+      <div class="container">
+        <h2 class="h1 mb-[117px] mdMax:hidden">Safety first</h2>
+        <h2 class="h2--type2 md:mb-[120px] mb-[48px]">Profile security</h2>
+        <div class="flex flex-col gap-[48px] md:gap-[62px]">
+          <div class="flex md:justify-between mdMax:flex-col mdMax:gap-[48px]">
+            <div class="md:max-w-[400px]">
+              <picture>
+                <source
+                  media="(min-width:768px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/security-icon1.webp"
+                  type="image/webp" />
+                <source
+                  media="(min-width:768px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/security-icon1.png"
+                  type="image/png" />
+                <source
+                  media="(max-width:767.98px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/security-icon-mob1.webp"
+                  type="image/webp" />
+                <source
+                  media="(max-width:767.98px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/security-icon-mob1.png"
+                  type="image/png" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/security-icon1.png"
+                  class="lazyload pointer-events-none select-none"
+                  alt="" />
+              </picture>
+              <h3 class="mt-[48px] mb-[28px]">Strict identity checks</h3>
+              <p class="mdMax:text-gray2">Combat payment fraud by scanning every transaction in real time and promptly blocking any suspicious activity.</p>
+            </div>
+
+            <div class="md:max-w-[400px]">
+              <picture>
+                <source
+                  media="(min-width:768px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/security-icon2.webp"
+                  type="image/webp" />
+                <source
+                  media="(min-width:768px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/security-icon2.png"
+                  type="image/png" />
+                <source
+                  media="(max-width:767.98px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/security-icon-mob2.webp"
+                  type="image/webp" />
+                <source
+                  media="(max-width:767.98px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/security-icon-mob2.png"
+                  type="image/png" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/security-icon2.png"
+                  class="lazyload pointer-events-none select-none"
+                  alt="" />
+              </picture>
+              <h3 class="mt-[48px] mb-[28px]">Dedicated control centre</h3>
+              <p class="mdMax:text-gray2">Ensure compliance, automate fraud detection, and detect illegal activity in payment orchestration platforms.</p>
+            </div>
+          </div>
+
+          <div class="flex md:justify-between mdMax:flex-col mdMax:gap-[48px]">
+            <div class="md:max-w-[400px]">
+              <picture>
+                <source
+                  media="(min-width:768px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/security-icon3.webp"
+                  type="image/webp" />
+                <source
+                  media="(min-width:768px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/security-icon3.png"
+                  type="image/png" />
+                <source
+                  media="(max-width:767.98px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/security-icon-mob3.webp"
+                  type="image/webp" />
+                <source
+                  media="(max-width:767.98px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/security-icon-mob3.png"
+                  type="image/png" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/security-icon3.png"
+                  class="lazyload pointer-events-none select-none"
+                  alt="" />
+              </picture>
+              <h3 class="mt-[48px] mb-[28px]">Activate cards in-app</h3>
+              <p class="mdMax:text-gray2">We check if bank cards are legitimate and belong to the rightful user to avoid costly chargebacks and maintain customer trust in your services.</p>
+            </div>
+
+            <div class="md:max-w-[400px]">
+              <picture>
+                <source
+                  media="(min-width:768px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/security-icon4.webp"
+                  type="image/webp" />
+                <source
+                  media="(min-width:768px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/security-icon4.png"
+                  type="image/png" />
+                <source
+                  media="(max-width:767.98px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/security-icon-mob4.webp"
+                  type="image/webp" />
+                <source
+                  media="(max-width:767.98px)"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/security-icon-mob4.png"
+                  type="image/png" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/security-icon4.png"
+                  class="lazyload pointer-events-none select-none"
+                  alt="" />
+              </picture>
+              <h3 class="mt-[48px] mb-[28px]">Biometric security</h3>
+              <p class="mdMax:text-gray2">Maintain compliance and detect fraud in funds transfers, lending, and payments.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="md:pt-[160px] md:pb-[120px] py-[64px]">
+      <div class="container">
+        <h2 class="h2--type2 md:mb-[120px] mb-[48px]">Transaction<br>
+          security</h2>
+        <div class="md:mb-[32px] mb-[48px]">
+          <div class="badge">
+            <span>Payment protection</span>
+          </div>
+        </div>
+        <p class="p--lg md:max-w-[760px] text-white">Combat payment fraud by scanning every transaction in real time and promptly blocking any suspicious activity. We check if bank cards are legitimate and belong to the rightful user to avoid costly chargebacks and maintain customer trust in your services.</p>
+      </div>
+    </section>
+
+    <section class="py-[20px] px-4 relative" id="videoSection2">
+      <video id="video2" class="video js-video" muted style="position: static !important;">
+        <source src="./public/videos/Video2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </section>
+    
+    <section class="md:py-[120px] py-[64px]">
+      <div class="container">
+        <div class="md:mb-[32px] mb-[48px]">
+          <div class="badge">
+            <span>Transaction monitoring</span>
+          </div>
+        </div>
+        <p class="p--lg md:max-w-[760px] text-white mb-6 md:mb-10">Maintain compliance and detect fraud in funds transfers, lending, and payments.</p>
+        <p class="p--lg md:max-w-[760px] text-white">Ensure compliance, automate fraud detection, and detect illegal activity in payment orchestration platforms.</p>
+      </div>
+    </section>
+
+    <section class="py-[20px] px-4 md:h-[1500px] h-[1000px] relative" id="videoSection3">
+      <video id="video3" class="video js-video" muted>
+        <source src="./public/videos/Video3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </section>
+    
+    <section class="md:pt-[80px] md:pb-[160px] py-[48px]">
+      <div class="container">
+        <h2 class="h1 mdMax:text-[28px] text-center md:mb-[142px] mb-[24px]">Choose your plan</h2>
+        <div class="grid md:grid-cols-3 grid-cols-1 gap-[8px]">
+          <div class="plan">
+            <div class="plan__title">Account</div>
+            <div class="plan__text">Combat payment fraud by scanning every transaction in real-time and swiftly.</div>
+            <div class="plan__img">
+              <picture>
+                <source
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/plan1.webp"
+                  type="image/webp" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/plan1.png"
+                  class="lazyload pointer-events-none select-none"
+                  alt="" />
+              </picture>
+            </div>
+            <div class="plan__price">Free<span>per month</span></div>
+            <a href="#" class="plan__btn">Get started</a>
+          </div>
+
+          <div class="plan">
+            <div class="plan__title">Virtual card</div>
+            <div class="plan__text">Combat payment fraud by scanning every transaction in real-time and swiftly.</div>
+            <div class="plan__img">
+              <picture>
+                <source
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/plan2.webp"
+                  type="image/webp" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/plan2.png"
+                  class="lazyload pointer-events-none select-none"
+                  alt="" />
+              </picture>
+            </div>
+            <div class="plan__price">$7<span>per month</span></div>
+            <a href="#" class="plan__btn">Get started</a>
+          </div>
+
+          <div class="plan">
+            <div class="plan__title">Plastic card</div>
+            <div class="plan__text">Combat payment fraud by scanning every transaction in real-time and swiftly.</div>
+            <div class="plan__img">
+              <picture>
+                <source
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-srcset="./public/img/webp/plan3.webp"
+                  type="image/webp" />
+                <img
+                  src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  data-src="./public/img/plan3.png"
+                  class="lazyload pointer-events-none select-none"
+                  alt="" />
+              </picture>
+            </div>
+            <div class="plan__price">$14<span>per month</span></div>
+            <a href="#" class="plan__btn">Get started</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="md:pt-[120px] md:pb-[100px] py-[48px]">
+      <div class="container">
+        <h2 class="h1 mdMax:text-[27px] text-center md:mb-[150px] mb-[40px]">Questions?<br>
+          We have answers!</h2>
+        
+        <div class="faq">
+          <div class="faq__item">
+            <div class="faq__question">
+              <div class="faq__question-text">The bank account for your everyday life</div>
+              <div class="faq__question-icon"></div>
+            </div>
+            <div class="faq__answer">
+              <div class="faq__answer-wrapper">
+                <p>Combat payment fraud by scanning every transaction in real-time and swiftly blocking any suspicious activity. We verify if bank cards are legitimate and belong to the rightful user to avoid costly chargebacks and preserve customer trust in your services.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq__item">
+            <div class="faq__question">
+              <div class="faq__question-text">What types of deposits are there?</div>
+              <div class="faq__question-icon"></div>
+            </div>
+            <div class="faq__answer">
+              <div class="faq__answer-wrapper">
+                <p>Combat payment fraud by scanning every transaction in real-time and swiftly blocking any suspicious activity. We verify if bank cards are legitimate and belong to the rightful user to avoid costly chargebacks and preserve customer trust in your services.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq__item">
+            <div class="faq__question">
+              <div class="faq__question-text">What types of credit cards are there?</div>
+              <div class="faq__question-icon"></div>
+            </div>
+            <div class="faq__answer">
+              <div class="faq__answer-wrapper">
+                <p>Combat payment fraud by scanning every transaction in real-time and swiftly blocking any suspicious activity. We verify if bank cards are legitimate and belong to the rightful user to avoid costly chargebacks and preserve customer trust in your services.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq__item">
+            <div class="faq__question">
+              <div class="faq__question-text">What is a debit card?</div>
+              <div class="faq__question-icon"></div>
+            </div>
+            <div class="faq__answer">
+              <div class="faq__answer-wrapper">
+                <p>Combat payment fraud by scanning every transaction in real-time and swiftly blocking any suspicious activity. We verify if bank cards are legitimate and belong to the rightful user to avoid costly chargebacks and preserve customer trust in your services.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq__item">
+            <div class="faq__question">
+              <div class="faq__question-text">What are the benefits of debit cards?</div>
+              <div class="faq__question-icon"></div>
+            </div>
+            <div class="faq__answer">
+              <div class="faq__answer-wrapper">
+                <p>Combat payment fraud by scanning every transaction in real-time and swiftly blocking any suspicious activity. We verify if bank cards are legitimate and belong to the rightful user to avoid costly chargebacks and preserve customer trust in your services.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq__item">
+            <div class="faq__question">
+              <div class="faq__question-text">What is credit insurance?</div>
+              <div class="faq__question-icon"></div>
+            </div>
+            <div class="faq__answer">
+              <div class="faq__answer-wrapper">
+                <p>Combat payment fraud by scanning every transaction in real-time and swiftly blocking any suspicious activity. We verify if bank cards are legitimate and belong to the rightful user to avoid costly chargebacks and preserve customer trust in your services.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__nav-grid">
+        <ul class="footer__nav">
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Accounts and Cards</a>
+          </li>
+          <li>
+            <a href="#">Security</a>
+          </li>
+          <li>
+            <a href="#">Plans</a>
+          </li>
+          <li>
+            <a href="#">Support</a>
+          </li>
+        </ul>
+        <ul class="footer__nav">
+          <li>
+            <a href="#">Privacy Policy</a>
+          </li>
+          <li>
+            <a href="#">Terms of use</a>
+          </li>
+          <li>
+            <a href="#">Cookie Policy</a>
+          </li>
+          <li>
+            <a href="#">Risks</a>
+          </li>
+          <li>
+            <a href="#">Data Requests</a>
+          </li>
+          <li>
+            <a href="#">Imprint</a>
+          </li>
+        </ul>
+        <div class="footer__apps">
+          <a href="#">
+            <picture>
+              <source
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="./public/img/webp/footer-app-store.webp"
+                type="image/webp" />
+              <img
+                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-src="./public/img/footer-app-store.png"
+                class="lazyload pointer-events-none select-none"
+                alt="" />
+            </picture>
+          </a>
+          <a href="#">
+            <picture>
+              <source
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="./public/img/webp/footer-google-app.webp"
+                type="image/webp" />
+              <img
+                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-src="./public/img/footer-google-app.png"
+                class="lazyload pointer-events-none select-none"
+                alt="" />
+            </picture>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer__copyright">
+        <p class="mb-[36px]">&copy; TeslaPay 2025</p>
+        <div class="footer__copyright-text">
+          <p>If you would like to find out more about which Revolut entity you receive services from, or have any other questions, please reach out to us via the in-app chat in the Revolut app.</p>
+          <p>Revolut Ltd is registered in England and Wales (No. 08804411), is authorised by the Financial Conduct Authority to offer e-money and payment services under the Electronic Money Regulations 2011 (FRN: 900562), and is registered with the Financial Conduct Authority to offer cryptocurrency services under the Money Laundering, Terrorist Financing and Transfer of Funds (Information on the Payer) Regulations 2017. Commodities services are provided by Revolut Ltd and are not regulated by the Financial Conduct Authority.</p>
+          <p>Revolut Travel Ltd (No. 10618740) is authorised by the Financial Conduct Authority to undertake insurance distribution activities (FRN: 780586). Our insurance products are arranged by Revolut Travel Ltd and Revolut Ltd, an appointed representative of Revolut Travel Ltd.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-app" id="modalApp">
+    <div class="modal-app__title text-center mb-[40px]">Get TeslaPay app</div>
+    <div class="mdMax:!hidden">
+      <div class="modal-app__text text-center mb-4">Scan the QR code to download the app</div>
+      <div class="modal-app__qr mb-4">
+        <img src="./public/img/qr-img.jpg" alt="">
+      </div>
+      <div class="modal-app__text text-center mb-[40px]">or get a download link via SMS</div>
+      <form class="phone-form" id="phoneFormModal">
+        <div class="phone-form__input-wrapper">
+          <div class="phone-form__input">
+            <div class="phone-form__input-left">
+              <img src="./public/img/flags/flag-sw.svg" alt="">
+              <span>+33</span>
+            </div>
+            <input type="tel" placeholder="Mobile number" name="phone_qr">
+          </div>
+        </div>
+        <input type="submit" value="Send link" class="phone-form__btn">
+      </form>
+      <div class="phone-form__success">
+        <span>Link sended!</span>
+      </div>
+    </div>
+
+    <div class="md:!hidden flex flex-col gap-2">
+      <a href="#">
+        <picture>
+          <source
+            srcset="./public/img/webp/app-store.webp"
+            type="image/webp" />
+          <img
+            src="./public/img/app-store.png"
+            alt="" />
+        </picture>
+      </a>
+      <a href="#">
+        <picture>
+          <source
+            srcset="./public/img/webp/google-play.webp"
+            type="image/webp" />
+          <img
+            src="./public/img/google-play.png"
+            alt="" />
+        </picture>
+      </a>
+    </div>
+  </div>
+
+  <div class="cookie-banner__overflow"></div>
+  <div class="cookie-banner" id="cookie-banner">
+    <button type="button" class="cookie-banner__close"></button>
+    <div class="cookie-banner__title">Cookie Policy</div>
+    <div class="cookie-banner__text">
+      <p class="mb-6">TeslaPay utilizes specific cookies and similar technologies (collectively referred to as ‘Cookies’) to ensure that our services are delivered to you in a reliable and secure manner. These Cookies are automatically set when you visit our websites and do not require your approval. With your permission, we and our partners may employ additional Cookies to enhance the performance of our websites, create a personalized banking experience, and provide you with more relevant content and advertisements online. To achieve this, we gather information regarding your devices, your behavior on our websites, and your interactions with our advertisements.</p>
+      <p>By selecting “Accept all,” you agree to our use of these additional Cookies and consent to the sharing of the collected information with our partners, some of whom may be located outside the EU, including the USA. According to EU Regulation 2016/679 (‘GDPR’), the USA does not offer an adequate level of protection for personal data. If you choose ‘Reject all’ or click the ‘X’ button in the top right corner of this banner, the default settings will remain unchanged. To manage your consent preferences individually, please select “Cookie preferences.” You can withdraw your consent at any time. For further details, please refer to our cookie policy.</p>
+      <img src="./public/img/cookies-blur.png" alt="" class="cookie-banner__text-blur">
+    </div>
+    <div class="cookie-banner__btns">
+      <button
+        type="button"
+        class="cookie-banner__btn cookie-banner__btn--reject"
+        id="reject-cookies"
+      >Reject All</button>
+      <button
+        type="button"
+        class="cookie-banner__btn cookie-banner__btn--accept"
+        id="accept-cookies"
+      >Accept All</button>
+    </div>
+  </div>
+</div>
+
+<!--<script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>-->
+<script src="./public/js/vendor-min.js"></script>
+<script src="./public/js/scripts-min.js" defer></script>
+</body>
+</html>

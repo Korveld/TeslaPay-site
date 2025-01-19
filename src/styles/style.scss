@@ -1,0 +1,50 @@
+@use 'root';
+
+@use 'mixins';
+
+/* Plugins */
+@use 'plugins/jquery.fancybox_fix';
+
+@use 'plugins/plugins-rewrite';
+
+/* Global styles */
+@use 'global/global-fonts';
+
+@use 'global/global-typo';
+
+@use 'global/global-scaffolding';
+
+/* Blocks */
+@use '../blocks/main/main';
+
+@use '../blocks/header/header';
+
+@use '../blocks/fancybox/fancybox';
+
+@use '../blocks/menu/menu';
+
+@use '../blocks/lang-switcher/lang-switcher';
+
+@use '../blocks/cookie-banner/cookie-banner';
+
+@use '../blocks/get-app-btn/get-app-btn';
+
+@use '../blocks/modal-app/modal-app';
+
+@use '../blocks/phone-form/phone-form';
+
+@use '../blocks/not-valid-tip/not-valid-tip';
+
+@use '../blocks/video/video';
+
+@use '../blocks/animations/animations';
+
+@use '../blocks/badge/badge';
+
+@use '../blocks/card/card';
+
+@use '../blocks/plan/plan';
+
+@use '../blocks/faq/faq';
+
+@use '../blocks/footer/footer';

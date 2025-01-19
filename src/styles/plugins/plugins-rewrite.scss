@@ -1,0 +1,70 @@
+// lazysizes
+
+/* fade image in after load */
+.lazyload,
+.lazyloading {
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.lazyloaded {
+  opacity: 1;
+  transition: opacity var(--transition-base);
+}
+
+.container,
+.container-fluid {
+  padding: 0 16px;
+}
+
+@layer components {
+
+  .btn {
+  }
+
+  .btn-primary {
+
+    &:hover {
+    }
+
+    &:active {
+    }
+
+    &:disabled {
+    }
+  }
+
+  .btn-outline-primary {
+
+    &:hover {
+    }
+
+    &:active {
+    }
+
+    &:disabled {
+    }
+  }
+
+  .btn-link {
+
+    &:hover {
+    }
+
+    &:active {
+    }
+  }
+}
+
+// Fancybox
+.fancybox-is-open .fancybox-bg {
+  opacity: .75;
+  background: rgba(19, 19, 21, 1);
+}
+
+.fancybox-slide {
+
+  @media only screen and (max-width: theme('screens.mdMax.max')) {
+    padding: 0;
+  }
+}

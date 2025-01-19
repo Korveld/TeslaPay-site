@@ -1,0 +1,22 @@
+.fancybox {
+
+  &--custom {
+
+    .fancybox-slide {
+      padding: 0;
+    }
+
+    .fancybox-content {
+      padding: 24px 16px;
+      width: 100%;
+      background: #171f2e;
+    }
+
+    .fancybox-button {
+
+      svg path {
+        fill: #fff;
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+.modal-app {
+  padding: 64px;
+  display: none;
+  width: 628px;
+  background: rgb(255, 255, 255);
+  border-radius: 30px;
+  box-shadow: 0 4px 36px 0 rgba(0, 0, 0, .15);
+
+  @media only screen and (max-width: theme('screens.mdMax.max')) {
+    padding: 48px;
+    width: 100%;
+    vertical-align: bottom;
+  }
+
+  .fancybox-close-small {
+    top: 32px;
+    right: 32px;
+    padding: 0;
+    width: 17px;
+    height: 18px;
+    background-image: url("data:image/svg+xml,%3Csvg width='17' height='18' viewBox='0 0 17 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.90027L15.9995 16.8531' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M1 16.8535L15.9995 1.90071' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+      display: none;
+    }
+
+    svg {
+      display: none;
+    }
+  }
+
+  &__title {
+    font-size: 40px;
+    line-height: 120%;
+    font-weight: 600;
+    letter-spacing: -.6px;
+    color: theme('colors.primary');
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+      font-size: 24px;
+      line-height: 120%;
+      font-weight: 600;
+      letter-spacing: -.4px;
+    }
+  }
+
+  &__text {
+    font-size: 20px;
+    line-height: 150%;
+    font-weight: 500;
+    letter-spacing: -.4px;
+    color: theme('colors.gray');
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+    }
+  }
+
+  &__qr {
+    display: flex;
+    justify-content: center;
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+    }
+
+    img {
+      width: 100%;
+      max-width: 234px;
+      height: auto;
+    }
+  }
+}

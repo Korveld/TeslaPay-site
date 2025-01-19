@@ -1,0 +1,33 @@
+.menu {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  gap: 64px;
+
+  @media only screen and (max-width: theme('screens.xlMax.max')) {
+    gap: 32px;
+  }
+
+  @media only screen and (max-width: theme('screens.lgMax.max')) {
+    gap: 16px;
+  }
+
+  @media only screen and (max-width: theme('screens.mdMax.max')) {
+    display: none;
+  }
+
+  a {
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: -.3px;
+    color: theme('colors.gray');
+    transition: var(--transition-base);
+
+    &.is-active,
+    &:hover {
+      color: theme('colors.secondary');
+    }
+  }
+}

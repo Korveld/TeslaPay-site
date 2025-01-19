@@ -1,0 +1,97 @@
+.plan {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  background: theme('colors.primary');
+  border-radius: 30px;
+  transition: background var(--transition-long);
+  gap: 28px;
+
+  @media only screen and (max-width: theme('screens.mdMax.max')) {
+    padding: 24px 32px;
+    border: 3px solid theme('colors.darkBlue');
+    border-radius: 20px;
+  }
+
+  &:hover {
+
+    @media only screen and (min-width: theme('screens.md')) {
+      background: theme('colors.darkBlue');
+    }
+  }
+
+  &__title {
+    font-size: 28px;
+    line-height: 120%;
+    font-weight: 600;
+    letter-spacing: -.4px;
+    color: theme('colors.white');
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+      font-size: 20px;
+      line-height: 120%;
+      letter-spacing: -.3px;
+    }
+  }
+
+  &__text {
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 500;
+    letter-spacing: -.3px;
+    color: theme('colors.gray');
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+      font-size: 15px;
+    }
+  }
+
+  &__img {
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+      display: none;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__price {
+    font-size: 28px;
+    line-height: 120%;
+    font-weight: 600;
+    letter-spacing: -.4px;
+    color: theme('colors.white');
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+      font-size: 24px;
+    }
+
+    span {
+      margin-left: 8px;
+      font-size: 12px;
+      line-height: 150%;
+      font-weight: 500;
+      letter-spacing: -.2px;
+      color: theme('colors.gray3');
+    }
+  }
+
+  &__btn {
+    padding: 2px 24px;
+    display: flex;
+    width: 100%;
+    min-height: 39px;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 500;
+    text-decoration: none;
+    color: theme('colors.dark');
+    background: linear-gradient(270deg, rgb(209, 201, 178) 33.905%, rgb(148, 117, 55) 92.241%);
+    border-radius: 50px;
+  }
+}

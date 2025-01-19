@@ -1,0 +1,112 @@
+.card {
+  position: relative;
+  padding: 40px;
+  overflow: hidden;
+  background: theme('colors.darkBlue');
+  border-radius: 30px;
+  transition: background var(--transition-long);
+
+  @media only screen and (max-width: theme('screens.mdMax.max')) {
+    padding: 40px 0 40px 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &:hover {
+    background: theme('colors.darkBlueHover');
+
+    .card__img img {
+      transform: scale(1.1);
+    }
+  }
+
+  &__img {
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+      flex: 1 0 auto;
+      order: 2;
+    }
+
+    img {
+      transition: var(--transition-long);
+
+      @media only screen and (max-width: theme('screens.mdMax.max')) {
+        width: 114px;
+        height: auto;
+      }
+    }
+  }
+
+  &__text {
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+      order: 1;
+    }
+  }
+
+  h4,
+  .h4 {
+    margin-bottom: 24px;
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+      margin-bottom: 28px;
+    }
+  }
+
+  .p--md {
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+      color: theme('colors.gray2');
+    }
+  }
+
+  &--sm {
+    padding: 0;
+    display: flex;
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+      padding: 40px 0 40px 32px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card__img {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      flex: 1 0 auto;
+
+      @media only screen and (max-width: theme('screens.mdMax.max')) {
+        padding: 0;
+        flex: 1 0 auto;
+        order: 2;
+      }
+
+      img {
+
+        @media only screen and (max-width: theme('screens.mdMax.max')) {
+          width: 114px;
+          height: auto;
+        }
+      }
+    }
+
+    .card__text {
+      padding-left: 40px;
+      padding-bottom: 40px;
+      align-self: flex-end;
+
+      @media only screen and (max-width: theme('screens.mdMax.max')) {
+        padding: 0;
+        order: 1;
+        align-self: center;
+      }
+    }
+
+    h4,
+    .h4 {
+      margin-bottom: 28px;
+    }
+  }
+}
