@@ -67,11 +67,7 @@ function setupVideos() {
 
   function initializeAllScrollMagic() {
     videos.forEach((video) => {
-      $(video).height(
-        (typeof window.outerHeight != 'undefined') ? 
-          Math.max(window.outerHeight, $(window).height()) : 
-          $(window).height() - 40
-      );
+      $(video).height(window.outerHeight - 40);
       var video_section = video.closest('section');
       var triggerElement = `#${video_section.id}`;
       var duration;
@@ -88,7 +84,7 @@ function setupVideos() {
 
       if (mqMob.matches) {
         if (video.id === 'video2') {
-          duration = 400;
+          duration = 500;
           offset = -250;
         }
         if (video.id === 'video3') {
@@ -193,6 +189,14 @@ jQuery(function ($) {
   
 });
 
+$('.scrollContainer').on('scroll load', function () {
+  if ($(this).scrollTop() > 0) {
+    $('.header').addClass('is-sticky');
+  } else {
+    $('.header').removeClass('is-sticky');
+  }
+});
+
 jQuery(function ($) {
 
   var mq = window.matchMedia( "(min-width: 767.98px)" );
@@ -224,12 +228,7 @@ jQuery(function ($) {
   
 });
 
-$('.scrollContainer').on('scroll load', function () {
-  if ($(this).scrollTop() > 0) {
-    $('.header').addClass('is-sticky');
-  } else {
-    $('.header').removeClass('is-sticky');
-  }
+jQuery(function ($) {
 });
 
 jQuery(function ($) {
@@ -258,9 +257,6 @@ jQuery(function ($) {
     $(this).valid();
   });
   
-});
-
-jQuery(function ($) {
 });
 
 var scrollContainer = document.getElementById('scrollContainer');

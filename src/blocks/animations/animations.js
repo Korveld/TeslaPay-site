@@ -67,11 +67,7 @@ function setupVideos() {
 
   function initializeAllScrollMagic() {
     videos.forEach((video) => {
-      $(video).height(
-        (typeof window.outerHeight != 'undefined') ? 
-          Math.max(window.outerHeight, $(window).height()) : 
-          $(window).height() - 40
-      );
+      $(video).height(window.outerHeight - 40);
       var video_section = video.closest('section');
       var triggerElement = `#${video_section.id}`;
       var duration;
@@ -88,7 +84,7 @@ function setupVideos() {
 
       if (mqMob.matches) {
         if (video.id === 'video2') {
-          duration = 400;
+          duration = 500;
           offset = -250;
         }
         if (video.id === 'video3') {
