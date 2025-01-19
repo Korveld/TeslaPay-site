@@ -2,8 +2,7 @@ var controller = new ScrollMagic.Controller();
 
 // All videos animations logic
 function initializeScrollMagic(video, video_section, triggerElement, duration, offset = 0) {
-  var videoDuration = video.duration;
-  console.log('initializeScrollMagic');
+  // var videoDuration = video.duration;
 
   // Create a ScrollMagic scene
   new ScrollMagic.Scene({
@@ -14,11 +13,17 @@ function initializeScrollMagic(video, video_section, triggerElement, duration, o
   })
     .on('progress', (e) => {
       // Map scroll progress to video time
-      video.currentTime = e.progress * videoDuration;
-      console.log('progress: ', video.currentTime);
-      
-      // Pause the video to prevent auto-play behavior
-      video.pause();
+      console.log('Progress:', e.progress, 'Duration:', video.duration);
+      if (video.duration > 0) {
+        let newTime = e.progress * video.duration;
+        if (newTime !== video.currentTime) {
+          video.currentTime = newTime;
+          console.log('Current time: ', video.currentTime);
+        }
+      } else {
+        console.warn('Video duration is 0, cannot set currentTime');
+      }
+      video.pause(); // Pause to prevent auto-play behavior
     })
     .addTo(controller);
 }

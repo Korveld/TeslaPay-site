@@ -2,8 +2,7 @@ var controller = new ScrollMagic.Controller();
 
 // All videos animations logic
 function initializeScrollMagic(video, video_section, triggerElement, duration, offset = 0) {
-  var videoDuration = video.duration;
-  console.log('initializeScrollMagic');
+  // var videoDuration = video.duration;
 
   // Create a ScrollMagic scene
   new ScrollMagic.Scene({
@@ -14,11 +13,17 @@ function initializeScrollMagic(video, video_section, triggerElement, duration, o
   })
     .on('progress', (e) => {
       // Map scroll progress to video time
-      video.currentTime = e.progress * videoDuration;
-      console.log('progress: ', video.currentTime);
-      
-      // Pause the video to prevent auto-play behavior
-      video.pause();
+      console.log('Progress:', e.progress, 'Duration:', video.duration);
+      if (video.duration > 0) {
+        let newTime = e.progress * video.duration;
+        if (newTime !== video.currentTime) {
+          video.currentTime = newTime;
+          console.log('Current time: ', video.currentTime);
+        }
+      } else {
+        console.warn('Video duration is 0, cannot set currentTime');
+      }
+      video.pause(); // Pause to prevent auto-play behavior
     })
     .addTo(controller);
 }
@@ -139,35 +144,6 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
-  
-  $('.faq__question').on('click', function(e) {
-    e.preventDefault();
-    $(this).parent().toggleClass('is-open');
-    $(this).next().slideToggle(500);
-  });
-  
-});
-
-jQuery(function ($) {
-
-  $('.get-app-btn').fancybox({
-    afterShow : function( instance, current ) {
-      $('#phoneFormModal').show();
-      $('.phone-form__success').hide();
-    }
-  });
-  
-});
-
-$('.scrollContainer').on('scroll load', function () {
-  if ($(this).scrollTop() > 0) {
-    $('.header').addClass('is-sticky');
-  } else {
-    $('.header').removeClass('is-sticky');
-  }
-});
-
-jQuery(function ($) {
 
   if (!$.cookie('cookiesAccepted')) {
     $('#cookie-banner').show();
@@ -202,32 +178,22 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
+  
+  $('.faq__question').on('click', function(e) {
+    e.preventDefault();
+    $(this).parent().toggleClass('is-open');
+    $(this).next().slideToggle(500);
+  });
+  
 });
 
 jQuery(function ($) {
 
-  $('#phoneFormModal').validate({
-    errorElement: 'span',
-    errorClass: 'not-valid-tip',
-    rules: {
-      phone_qr: {
-        required: true,
-      },
-    },
-    messages: {},
-    errorPlacement: function (error, element) {
-      element.parents('.phone-form__input-wrapper').append(error)
-    },
-    submitHandler: function(form) {
-      // form.submit();
-      $(form)[0].reset();
-      $(form).hide();
-      $(form).siblings('.phone-form__success').show();
+  $('.get-app-btn').fancybox({
+    afterShow : function( instance, current ) {
+      $('#phoneFormModal').show();
+      $('.phone-form__success').hide();
     }
-  });
-
-  $('#phoneFormModal').submit(function (e) {
-    $(this).valid();
   });
   
 });
@@ -259,6 +225,45 @@ jQuery(function ($) {
       $('.lang-switcher .lang-switcher__dropdown').fadeOut(300);
       $('.lang-switcher__overflow').fadeOut(300);
     }
+  });
+  
+});
+
+$('.scrollContainer').on('scroll load', function () {
+  if ($(this).scrollTop() > 0) {
+    $('.header').addClass('is-sticky');
+  } else {
+    $('.header').removeClass('is-sticky');
+  }
+});
+
+jQuery(function ($) {
+});
+
+jQuery(function ($) {
+
+  $('#phoneFormModal').validate({
+    errorElement: 'span',
+    errorClass: 'not-valid-tip',
+    rules: {
+      phone_qr: {
+        required: true,
+      },
+    },
+    messages: {},
+    errorPlacement: function (error, element) {
+      element.parents('.phone-form__input-wrapper').append(error)
+    },
+    submitHandler: function(form) {
+      // form.submit();
+      $(form)[0].reset();
+      $(form).hide();
+      $(form).siblings('.phone-form__success').show();
+    }
+  });
+
+  $('#phoneFormModal').submit(function (e) {
+    $(this).valid();
   });
   
 });
