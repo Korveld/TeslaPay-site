@@ -141,17 +141,6 @@ jQuery(function ($) {
   
 });
 
-jQuery(function ($) {
-
-  $('.get-app-btn').fancybox({
-    afterShow : function( instance, current ) {
-      $('#phoneFormModal').show();
-      $('.phone-form__success').hide();
-    }
-  });
-  
-});
-
 $('.scrollContainer').on('scroll load', function () {
   if ($(this).scrollTop() > 0) {
     $('.header').addClass('is-sticky');
@@ -192,7 +181,33 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
+
+  $('.get-app-btn').fancybox({
+    afterShow : function( instance, current ) {
+      $('#phoneFormModal').show();
+      $('.phone-form__success').hide();
+    }
+  });
+  
 });
+
+jQuery(function ($) {
+});
+
+var scrollContainer = document.getElementById('scrollContainer');
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  var scrollpos = sessionStorage.getItem('scrollpos');
+  if (scrollpos) {
+    scrollContainer.scrollTo(0, scrollpos);
+    sessionStorage.removeItem('scrollpos');
+  }
+});
+
+window.addEventListener("beforeunload", function (e) {
+  sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
+});
+
 
 jQuery(function ($) {
 
@@ -221,18 +236,3 @@ jQuery(function ($) {
   });
   
 });
-
-var scrollContainer = document.getElementById('scrollContainer');
-
-document.addEventListener("DOMContentLoaded", function(event) {
-  var scrollpos = sessionStorage.getItem('scrollpos');
-  if (scrollpos) {
-    scrollContainer.scrollTo(0, scrollpos);
-    sessionStorage.removeItem('scrollpos');
-  }
-});
-
-window.addEventListener("beforeunload", function (e) {
-  sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
-});
-

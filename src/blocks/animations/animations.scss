@@ -14,8 +14,10 @@
   $z_index: 10;
 
   picture {
-    position: relative;
-    -webkit-transform: translate3d(0, 0, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    //-webkit-transform: translate3d(0, 0, 0);
 
     &:not(:first-of-type) {
       position: absolute;
