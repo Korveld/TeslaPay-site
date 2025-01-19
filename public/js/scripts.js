@@ -3,6 +3,7 @@ var controller = new ScrollMagic.Controller();
 // All videos animations logic
 function initializeScrollMagic(video, video_section, triggerElement, duration, offset = 0) {
   var videoDuration = video.duration;
+  console.log('initializeScrollMagic');
 
   // Create a ScrollMagic scene
   new ScrollMagic.Scene({
@@ -137,6 +138,16 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
+  
+  $('.faq__question').on('click', function(e) {
+    e.preventDefault();
+    $(this).parent().toggleClass('is-open');
+    $(this).next().slideToggle(500);
+  });
+  
+});
+
+jQuery(function ($) {
 
   if (!$.cookie('cookiesAccepted')) {
     $('#cookie-banner').show();
@@ -171,16 +182,6 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
-  
-  $('.faq__question').on('click', function(e) {
-    e.preventDefault();
-    $(this).parent().toggleClass('is-open');
-    $(this).next().slideToggle(500);
-  });
-  
-});
-
-jQuery(function ($) {
 
   $('.get-app-btn').fancybox({
     afterShow : function( instance, current ) {
@@ -189,9 +190,6 @@ jQuery(function ($) {
     }
   });
   
-});
-
-jQuery(function ($) {
 });
 
 $('.scrollContainer').on('scroll load', function () {
@@ -275,3 +273,6 @@ window.addEventListener("beforeunload", function (e) {
   sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
 });
 
+
+jQuery(function ($) {
+});

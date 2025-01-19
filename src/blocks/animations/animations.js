@@ -3,6 +3,7 @@ var controller = new ScrollMagic.Controller();
 // All videos animations logic
 function initializeScrollMagic(video, video_section, triggerElement, duration, offset = 0) {
   var videoDuration = video.duration;
+  console.log('initializeScrollMagic');
 
   // Create a ScrollMagic scene
   new ScrollMagic.Scene({
