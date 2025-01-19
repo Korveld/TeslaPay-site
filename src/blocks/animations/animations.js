@@ -15,6 +15,7 @@ function initializeScrollMagic(video, video_section, triggerElement, duration, o
     .on('progress', (e) => {
       // Map scroll progress to video time
       video.currentTime = e.progress * videoDuration;
+      console.log('progress: ', video.currentTime);
       
       // Pause the video to prevent auto-play behavior
       video.pause();

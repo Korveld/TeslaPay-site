@@ -15,6 +15,7 @@ function initializeScrollMagic(video, video_section, triggerElement, duration, o
     .on('progress', (e) => {
       // Map scroll progress to video time
       video.currentTime = e.progress * videoDuration;
+      console.log('progress: ', video.currentTime);
       
       // Pause the video to prevent auto-play behavior
       video.pause();
@@ -149,6 +150,25 @@ jQuery(function ($) {
 
 jQuery(function ($) {
 
+  $('.get-app-btn').fancybox({
+    afterShow : function( instance, current ) {
+      $('#phoneFormModal').show();
+      $('.phone-form__success').hide();
+    }
+  });
+  
+});
+
+$('.scrollContainer').on('scroll load', function () {
+  if ($(this).scrollTop() > 0) {
+    $('.header').addClass('is-sticky');
+  } else {
+    $('.header').removeClass('is-sticky');
+  }
+});
+
+jQuery(function ($) {
+
   if (!$.cookie('cookiesAccepted')) {
     $('#cookie-banner').show();
     $('.cookie-banner__overflow').show();
@@ -182,22 +202,34 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
-
-  $('.get-app-btn').fancybox({
-    afterShow : function( instance, current ) {
-      $('#phoneFormModal').show();
-      $('.phone-form__success').hide();
-    }
-  });
-  
 });
 
-$('.scrollContainer').on('scroll load', function () {
-  if ($(this).scrollTop() > 0) {
-    $('.header').addClass('is-sticky');
-  } else {
-    $('.header').removeClass('is-sticky');
-  }
+jQuery(function ($) {
+
+  $('#phoneFormModal').validate({
+    errorElement: 'span',
+    errorClass: 'not-valid-tip',
+    rules: {
+      phone_qr: {
+        required: true,
+      },
+    },
+    messages: {},
+    errorPlacement: function (error, element) {
+      element.parents('.phone-form__input-wrapper').append(error)
+    },
+    submitHandler: function(form) {
+      // form.submit();
+      $(form)[0].reset();
+      $(form).hide();
+      $(form).siblings('.phone-form__success').show();
+    }
+  });
+
+  $('#phoneFormModal').submit(function (e) {
+    $(this).valid();
+  });
+  
 });
 
 jQuery(function ($) {
@@ -231,34 +263,6 @@ jQuery(function ($) {
   
 });
 
-jQuery(function ($) {
-
-  $('#phoneFormModal').validate({
-    errorElement: 'span',
-    errorClass: 'not-valid-tip',
-    rules: {
-      phone_qr: {
-        required: true,
-      },
-    },
-    messages: {},
-    errorPlacement: function (error, element) {
-      element.parents('.phone-form__input-wrapper').append(error)
-    },
-    submitHandler: function(form) {
-      // form.submit();
-      $(form)[0].reset();
-      $(form).hide();
-      $(form).siblings('.phone-form__success').show();
-    }
-  });
-
-  $('#phoneFormModal').submit(function (e) {
-    $(this).valid();
-  });
-  
-});
-
 var scrollContainer = document.getElementById('scrollContainer');
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -273,6 +277,3 @@ window.addEventListener("beforeunload", function (e) {
   sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
 });
 
-
-jQuery(function ($) {
-});
