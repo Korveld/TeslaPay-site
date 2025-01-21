@@ -6,6 +6,7 @@ function initializeScrollMagic(video, video_section, triggerElement, duration, o
   var mq = window.matchMedia( "(min-width: 767.98px)" );
   var lastProgress = 0;
   var isAnimating = false;
+  var progressvalue;
 
   // Create a ScrollMagic scene
   new ScrollMagic.Scene({
@@ -23,7 +24,7 @@ function initializeScrollMagic(video, video_section, triggerElement, duration, o
         //   video.currentTime = newTime;
         //   console.log('Current time: ', video.currentTime);
         // }
-        if (mq.matches) {
+        /*if (mq.matches) {
           lastProgress = e.progress;
           if (!isAnimating) {
             isAnimating = true;
@@ -34,7 +35,9 @@ function initializeScrollMagic(video, video_section, triggerElement, duration, o
           if (newTime !== video.currentTime) {
             video.currentTime = newTime;
           }
-        }
+        }*/
+        progressvalue = Math.floor(100 * e.progress);
+        video.currentTime = video.duration * progressvalue / 100;
       } else {
         console.warn('Video duration is 0, cannot set currentTime');
       }
@@ -136,6 +139,7 @@ jQuery(function ($) {
   var video = document.getElementById('scroll-video');
   var lastProgress = 0;
   var isAnimating = false;
+  var progressvalue;
 
   // Play video on scroll
   if (mq.matches) {
@@ -148,11 +152,13 @@ jQuery(function ($) {
         // console.log(video.duration, video.currentTime);
         // video.currentTime = video.duration * event.progress;
         
-        lastProgress = event.progress;
+        /*lastProgress = event.progress;
         if (!isAnimating) {
           isAnimating = true;
           requestAnimationFrame(updateVideoTime);
-        }
+        }*/
+        progressvalue = Math.floor(100 * event.progress);
+        video.currentTime = video.duration * progressvalue / 100;
       })
       // .addIndicators({name: "play"})
       .addTo(controller);
