@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="./public/css/style.css?v=1.0.8">
+  <link rel="stylesheet" href="./public/css/style.css?v=1.0.9">
 
   <style>
     /* Hide the page content initially */
@@ -627,10 +627,20 @@
 
     <section class="video-section" id="videoSection3">
       <div class="video-container">
-        <video id="scroll-video" muted preload="auto">
-          <source src="./public/videos/Video3.mp4#t=0.1" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+        <div class="video-section__video">
+          <video id="scroll-video" muted preload="auto">
+            <source src="./public/videos/Video3.mp4#t=0.1" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <img
+            src="./public/img/phone-animations/logo.png"
+            class="pointer-events-none select-none video-section__logo"
+            alt="" />
+          <img
+            src="./public/img/phone-animations/mc-logo.png"
+            class="pointer-events-none select-none video-section__mc-logo"
+            alt="" />
+        </div>
       </div>
       <div class="phone-section">
         <div class="phone-section__container">
@@ -638,20 +648,16 @@
             <div class="phone-section__badge">cards</div>
             <div class="phone-section__heading">Plastic and Virtual</div>
           </div>
-          <picture>
-            <source
-              media="(min-width:768px)"
-              srcset="./public/img/phone-animations/hand-w-phone.png"
-              type="image/png" />
-            <source
-              media="(max-width:767.98px)"
-              srcset="./public/img/phone-animations/hand-w-phone--mob@2x.png"
-              type="image/png" />
+          <div class="phone-section__img-main">
             <img
-              src="./public/img/phone-animations/hand-w-phone.png"
-              class="phone-section__img-main pointer-events-none select-none"
+              src="./public/img/phone-animations/hand-w-phone-2.png"
+              class="pointer-events-none select-none phone-section__img-main-phone"
               alt="" />
-          </picture>
+            <img
+              src="./public/img/phone-animations/done.png"
+              class="pointer-events-none select-none phone-section__img-main-done"
+              alt="" />
+          </div>
           <img src="./public/img/phone-animations/phone-bg.png" alt="" class="phone-section__img-bg">
         </div>
       </div>
@@ -956,7 +962,7 @@
 </div>
 
 <!--<script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>-->
-<script src="./public/js/vendor-min.js?v=1.0.8"></script>
-<script src="./public/js/scripts-min.js?v=1.0.8"></script>
+<script src="./public/js/vendor-min.js?v=1.0.9"></script>
+<script src="./public/js/scripts-min.js?v=1.0.9"></script>
 </body>
 </html>

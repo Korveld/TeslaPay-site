@@ -3,6 +3,8 @@ var controller = new ScrollMagic.Controller();
 // All videos animations logic
 function initializeScrollMagic(video, video_section, triggerElement, duration, offset = 0) {
   // var videoDuration = video.duration;
+  var lastProgress = 0;
+  var isAnimating = false;
 
   // Create a ScrollMagic scene
   new ScrollMagic.Scene({
@@ -15,10 +17,15 @@ function initializeScrollMagic(video, video_section, triggerElement, duration, o
       // Map scroll progress to video time
       console.log('Progress:', e.progress, 'Duration:', video.duration);
       if (video.duration > 0) {
-        let newTime = e.progress * video.duration;
-        if (newTime !== video.currentTime) {
-          video.currentTime = newTime;
-          console.log('Current time: ', video.currentTime);
+        // let newTime = e.progress * video.duration;
+        // if (newTime !== video.currentTime) {
+        //   video.currentTime = newTime;
+        //   console.log('Current time: ', video.currentTime);
+        // }
+        lastProgress = e.progress;
+        if (!isAnimating) {
+          isAnimating = true;
+          requestAnimationFrame(updateVideoTime);
         }
       } else {
         console.warn('Video duration is 0, cannot set currentTime');
@@ -26,6 +33,12 @@ function initializeScrollMagic(video, video_section, triggerElement, duration, o
       video.pause(); // Pause to prevent auto-play behavior
     })
     .addTo(controller);
+
+  function updateVideoTime() {
+    video.currentTime = video.duration * lastProgress;
+    console.log('Current time: ', video.currentTime);
+    isAnimating = false;
+  }
 }
 
 function setupVideos() {
@@ -65,7 +78,6 @@ function setupVideos() {
 
   videos.forEach(video => {
     if (video.readyState >= 2) {
-      forceVideoLoad(video);
       checkAllVideosLoaded();
     } else {
       forceVideoLoad(video);
@@ -114,6 +126,8 @@ jQuery(function ($) {
   var mq = window.matchMedia( "(min-width: 767.98px)" );
   var mqMob = window.matchMedia( "(max-width: 768px)" );
   var video = document.getElementById('scroll-video');
+  var lastProgress = 0;
+  var isAnimating = false;
 
   // Play video on scroll
   if (mq.matches) {
@@ -122,38 +136,37 @@ jQuery(function ($) {
       duration: 970,
       triggerHook: 0,
     })
-      // .setPin('.video-section', {pushFollowers: false})
       .on('progress', function(event) {
-        console.log(video.duration, video.currentTime);
-        video.currentTime = video.duration * event.progress;
+        // console.log(video.duration, video.currentTime);
+        // video.currentTime = video.duration * event.progress;
+        
+        lastProgress = event.progress;
+        if (!isAnimating) {
+          isAnimating = true;
+          requestAnimationFrame(updateVideoTime);
+        }
       })
       // .addIndicators({name: "play"})
       .addTo(controller);
   }
 
-  // Shrink and move video while keeping it centered
+  function updateVideoTime() {
+    video.currentTime = video.duration * lastProgress;
+    isAnimating = false;
+  }
+
+  // Shrink and move video
   if (mq.matches) {
-    var shrinkTween = gsap.to('.video-container video', {
-      y: '-71',
+    var shrinkTween = gsap.to('.video-section__video', {
+      y: '-86',
       // scale: 0.16,
-      width: 237,
-      height: 148,
+      width: 226,
+      height: 142,
       duration: 1,
       borderRadius: 8,
       ease: 'power1.inOut'
     });
-  } else {
-    var shrinkTween = gsap.to('.video-container video', {
-      y: '2',
-      width: 112,
-      height: 72,
-      duration: 1,
-      borderRadius: 4,
-      ease: 'power1.inOut'
-    });
-  }
-
-  if (mq.matches) {
+    
     new ScrollMagic.Scene({
       triggerElement: '.video-section',
       triggerHook: 0,
@@ -161,9 +174,20 @@ jQuery(function ($) {
       duration: 1200
     })
       .setTween(shrinkTween)
+      .on('end', function(event) {
+      })
       // .addIndicators({name: "shrink"})
       .addTo(controller);
   } else {
+    var shrinkTween = gsap.to('.video-section__video', {
+      y: '2',
+      width: 112,
+      height: 72,
+      duration: 1,
+      borderRadius: 4,
+      ease: 'power1.inOut'
+    });
+    
     new ScrollMagic.Scene({
       triggerElement: '.video-section',
       triggerHook: 0,
@@ -172,6 +196,58 @@ jQuery(function ($) {
     })
       .setTween(shrinkTween)
       // .addIndicators({name: "shrink"})
+      .addTo(controller);
+  }
+
+  if (mq.matches) {
+    new ScrollMagic.Scene({
+      triggerElement: '.video-section',
+      triggerHook: 0,
+      offset: 1900,
+      duration: 300
+    })
+      .setTween(gsap.to('.video-section__logo, .video-section__mc-logo', {
+        opacity: 1,
+        ease: 'power1.inOut'
+      }))
+      .addTo(controller);
+  } else {
+    new ScrollMagic.Scene({
+      triggerElement: '.video-section',
+      triggerHook: 0,
+      offset: 900,
+      duration: 200
+    })
+      .setTween(gsap.to('.video-section__logo, .video-section__mc-logo', {
+        opacity: 1,
+        ease: 'power1.inOut'
+      }))
+      .addTo(controller);
+  }
+
+  if (mq.matches) {
+    new ScrollMagic.Scene({
+      triggerElement: '.phone-section',
+      duration: 200,
+      triggerHook: 0,
+      offset: 650,
+    })
+      .setTween(gsap.to('.phone-section__img-main-done', {
+        opacity: 1,
+        ease: 'power1.inOut'
+      }))
+      .addTo(controller);
+  } else {
+    new ScrollMagic.Scene({
+      triggerElement: '.phone-section',
+      duration: 200,
+      triggerHook: 0,
+      offset: 300,
+    })
+      .setTween(gsap.to('.phone-section__img-main-done', {
+        opacity: 1,
+        ease: 'power1.inOut'
+      }))
       .addTo(controller);
   }
 
@@ -312,17 +388,6 @@ jQuery(function ($) {
   
 });
 
-jQuery(function ($) {
-
-  $('.get-app-btn').fancybox({
-    afterShow : function( instance, current ) {
-      $('#phoneFormModal').show();
-      $('.phone-form__success').hide();
-    }
-  });
-  
-});
-
 $('.scrollContainer').on('scroll load', function () {
   if ($(this).scrollTop() > 0) {
     $('.header').addClass('is-sticky');
@@ -393,6 +458,18 @@ jQuery(function ($) {
   
 });
 
+jQuery(function ($) {
+
+  $('.get-app-btn').fancybox({
+    afterShow : function( instance, current ) {
+      $('#phoneFormModal').show();
+      $('.phone-form__success').hide();
+    }
+  });
+  
+});
+
+
 var scrollContainer = document.getElementById('scrollContainer');
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -406,4 +483,3 @@ document.addEventListener("DOMContentLoaded", function(event) {
 window.addEventListener("beforeunload", function (e) {
   sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
 });
-

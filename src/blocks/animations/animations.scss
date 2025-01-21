@@ -63,47 +63,74 @@
 
   @media only screen and (max-width: theme('screens.mdMax.max')) {
     padding: 20px 0;
-    height: 1800px;
+    height: 1900px;
   }
 
   .video-container {
-    //position: absolute;
-    //top: 50%;
-    //left: 50%;
-    //width: calc(100% - 32px);
-    //height: calc(100% - 40px);
-    //transform-origin: center center;
-    //transform: translate(-50%, -50%);
-    //border-radius: 30px;
-    //overflow: hidden;
-
     position: sticky;
     z-index: 2;
     top: 20px;
     left: 0;
     width: 100%;
-    //height: calc(100vh - 40px);
     height: 970px;
 
     @media only screen and (max-width: theme('screens.mdMax.max')) {
-      //position: absolute;
       height: 568px;
     }
   }
 
-  video {
+  &__video {
     position: absolute;
     top: 50%;
     left: 50%;
+    overflow: hidden;
     width: 100%;
     height: 100%;
     border-radius: 30px;
     transform: translate(-50%, -50%);
     transform-origin: center center;
-    object-fit: cover;
 
     @media only screen and (max-width: theme('screens.mdMax.max')) {
       border-radius: 0;
+    }
+  }
+
+  &__logo {
+    position: absolute;
+    z-index: 1;
+    top: 15px;
+    right: 13px;
+    width: 32px;
+    opacity: 0;
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+      top: 11%;
+      right: 6%;
+      width: 14%;
+    }
+  }
+
+  &__mc-logo {
+    position: absolute;
+    z-index: 1;
+    top: 104px;
+    right: 9px;
+    width: 48px;
+    opacity: 0;
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
+      top: 73%;
+      right: 3%;
+      width: 21%;
+    }
+  }
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    @media only screen and (max-width: theme('screens.mdMax.max')) {
     }
   }
 }
@@ -118,7 +145,7 @@
   @media only screen and (max-width: theme('screens.mdMax.max')) {
     margin-top: 200px;
     padding: 0 16px;
-    height: 990px;
+    height: 1090px;
   }
 
   &__container {
@@ -143,16 +170,37 @@
     z-index: 2;
     bottom: -800px;
     left: 50%;
-    width: 1081px;
-    min-width: 1081px;
-    height: 801px;
+    width: 690px;
+    min-width: 690px;
+    height: 699px;
     opacity: .4;
     transform: translateX(-50%);
 
     @media only screen and (max-width: theme('screens.mdMax.max')) {
-      width: 361px;
-      min-width: 361px;
-      height: 397px;
+      width: 338px;
+      min-width: 338px;
+      height: 342px;
+    }
+
+    .phone-section__img-main-phone {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .phone-section__img-main-done {
+      position: absolute;
+      top: 226px;
+      right: 326px;
+      width: 38px;
+      opacity: 0;
+
+      @media only screen and (max-width: theme('screens.mdMax.max')) {
+        top: 32%;
+        right: 50%;
+        width: 6%;
+        transform: translateX(50%);
+      }
     }
   }
 
