@@ -49,6 +49,7 @@ module.exports = {
         dark2: '#121214',
         light: '#F0F0F0',
         green: '#0B9F31',
+        yellow: '#EBE7DD',
       }
     },
     screens: {

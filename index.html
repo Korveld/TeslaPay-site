@@ -100,10 +100,12 @@
         </div>
       </div>
 
-      <a href="#modalApp" data-fancybox data-touch="false" class="get-app-btn">
-        <img src="./public/img/btn-logo.svg" alt="">
-        Get the app
-      </a>
+      <div id="getApp">
+        <a href="#modalApp" data-fancybox data-touch="false" class="get-app-btn">
+          <img src="./public/img/btn-logo.svg" alt="">
+          Get the app
+        </a>
+      </div>
     </section>
 
     <section class="py-[20px] px-4 md:h-[4000px] h-[3000px] relative" id="videoSection1">
@@ -623,11 +625,36 @@
       </div>
     </section>
 
-    <section class="py-[20px] px-4 md:h-[1500px] h-[1500px] relative" id="videoSection3">
-      <video id="video3" class="video js-video" muted preload="auto">
-        <source src="./public/videos/Video3.mp4#t=0.1" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+    <section class="video-section" id="videoSection3">
+      <div class="video-container">
+        <video id="scroll-video" muted preload="auto">
+          <source src="./public/videos/Video3.mp4#t=0.1" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="phone-section">
+        <div class="phone-section__container">
+          <div class="phone-section__top-content">
+            <div class="phone-section__badge">cards</div>
+            <div class="phone-section__heading">Plastic and Virtual</div>
+          </div>
+          <picture>
+            <source
+              media="(min-width:768px)"
+              srcset="./public/img/phone-animations/hand-w-phone.png"
+              type="image/png" />
+            <source
+              media="(max-width:767.98px)"
+              srcset="./public/img/phone-animations/hand-w-phone--mob@2x.png"
+              type="image/png" />
+            <img
+              src="./public/img/phone-animations/hand-w-phone.png"
+              class="phone-section__img-main pointer-events-none select-none"
+              alt="" />
+          </picture>
+          <img src="./public/img/phone-animations/phone-bg.png" alt="" class="phone-section__img-bg">
+        </div>
+      </div>
     </section>
     
     <section class="md:pt-[80px] md:pb-[160px] py-[48px]">

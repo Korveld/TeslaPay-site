@@ -94,7 +94,7 @@ function setupVideos() {
       if (mqMob.matches) {
         if (video.id === 'video2') {
           duration = 500;
-          offset = -250;
+          offset = -450;
         }
         if (video.id === 'video3') {
           offset = -100;
@@ -109,36 +109,161 @@ function setupVideos() {
 document.addEventListener('DOMContentLoaded', setupVideos);
 // End all videos animations logic
 
+// Video 3 and phone section animations logic
+jQuery(function ($) {
+  var mq = window.matchMedia( "(min-width: 767.98px)" );
+  var mqMob = window.matchMedia( "(max-width: 768px)" );
+  var video = document.getElementById('scroll-video');
+
+  // Play video on scroll
+  if (mq.matches) {
+    new ScrollMagic.Scene({
+      triggerElement: '.video-section',
+      duration: 970,
+      triggerHook: 0,
+    })
+      // .setPin('.video-section', {pushFollowers: false})
+      .on('progress', function(event) {
+        console.log(video.duration, video.currentTime);
+        video.currentTime = video.duration * event.progress;
+      })
+      // .addIndicators({name: "play"})
+      .addTo(controller);
+  }
+
+  // Shrink and move video while keeping it centered
+  if (mq.matches) {
+    var shrinkTween = gsap.to('.video-container video', {
+      y: '-71',
+      // scale: 0.16,
+      width: 237,
+      height: 148,
+      duration: 1,
+      borderRadius: 8,
+      ease: 'power1.inOut'
+    });
+  } else {
+    var shrinkTween = gsap.to('.video-container video', {
+      y: '2',
+      width: 112,
+      height: 72,
+      duration: 1,
+      borderRadius: 4,
+      ease: 'power1.inOut'
+    });
+  }
+
+  if (mq.matches) {
+    new ScrollMagic.Scene({
+      triggerElement: '.video-section',
+      triggerHook: 0,
+      offset: 700,
+      duration: 1200
+    })
+      .setTween(shrinkTween)
+      // .addIndicators({name: "shrink"})
+      .addTo(controller);
+  } else {
+    new ScrollMagic.Scene({
+      triggerElement: '.video-section',
+      triggerHook: 0,
+      offset: 0,
+      duration: 900
+    })
+      .setTween(shrinkTween)
+      // .addIndicators({name: "shrink"})
+      .addTo(controller);
+  }
+
+  if (mq.matches) {
+    new ScrollMagic.Scene({
+      triggerElement: '.phone-section',
+      duration: 500,
+      triggerHook: 0,
+      offset: -400,
+    })
+      .setTween(gsap.to('.phone-section__img-main', {
+        bottom: 0,
+        opacity: 1,
+        ease: 'power1.inOut'
+      }))
+      // .addIndicators({name: "phone"})
+      .addTo(controller);
+  } else {
+    new ScrollMagic.Scene({
+      triggerElement: '.phone-section',
+      duration: 500,
+      triggerHook: 0,
+      offset: -400,
+    })
+      .setTween(gsap.to('.phone-section__img-main', {
+        bottom: 0,
+        opacity: 1,
+        ease: 'power1.inOut'
+      }))
+      // .addIndicators({name: "phone"})
+      .addTo(controller);
+  }
+
+  if (mq.matches) {
+    new ScrollMagic.Scene({
+      triggerElement: '.phone-section',
+      duration: 500,
+      triggerHook: 0,
+      offset: -200,
+    })
+      .setTween(gsap.to('.phone-section__top-content', {
+        opacity: 1,
+        ease: 'power1.inOut'
+      }))
+      // .addIndicators({name: "phone"})
+      .addTo(controller);
+  } else {
+    new ScrollMagic.Scene({
+      triggerElement: '.phone-section',
+      duration: 500,
+      triggerHook: 0,
+      offset: -100,
+    })
+      .setTween(gsap.to('.phone-section__top-content', {
+        opacity: 1,
+        ease: 'power1.inOut'
+      }))
+      // .addIndicators({name: "phone"})
+      .addTo(controller);
+  }
+});
+// End Video 3 and phone section animations logic
+
 // Other animations logic
 jQuery(function ($) {
   var mq = window.matchMedia( "(min-width: 767.98px)" );
   var mqMob = window.matchMedia( "(max-width: 768px)" );
-  
-  var animate_icon_1 = new ScrollMagic.Scene({
-    triggerElement: "#trigger_animate_icon_1", 
-    duration: 400
-  })
-    .setTween("#animate_icon_1", { scale: 1 })
-    .addTo(controller);
-  var animate_icon_2 = new ScrollMagic.Scene({
-    triggerElement: "#trigger_animate_icon_2", 
-    duration: 400,
-    offset: 0
-  })
-    .setTween("#animate_icon_2", { rotation: 0 })
-    .addTo(controller);
-  
-  var card_offset = 45;
-  if (mqMob.matches) {
-    card_offset = 25;
-  }
-  $('.js-animate-card').each(function(index, node) {
-    new ScrollMagic.Scene({
-      triggerElement: "#trigger_animate_icon_3",
+
+  if (mq.matches) {
+    var animate_icon_1 = new ScrollMagic.Scene({
+      triggerElement: "#trigger_animate_icon_1",
+      duration: 400
+    })
+      .setTween("#animate_icon_1", { scale: 1 })
+      .addTo(controller);
+    var animate_icon_2 = new ScrollMagic.Scene({
+      triggerElement: "#trigger_animate_icon_2",
       duration: 400,
       offset: 0
     })
-      .setTween(node, { x: card_offset * (index + 1) })
+      .setTween("#animate_icon_2", { rotation: 0 })
       .addTo(controller);
-  });
+
+    var card_offset = 45;
+    $('.js-animate-card').each(function(index, node) {
+      new ScrollMagic.Scene({
+        triggerElement: "#trigger_animate_icon_3",
+        duration: 400,
+        offset: 0
+      })
+        .setTween(node, { x: card_offset * (index + 1) })
+        .addTo(controller);
+    }); 
+  }
 });
