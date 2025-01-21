@@ -3,6 +3,7 @@ var controller = new ScrollMagic.Controller();
 // All videos animations logic
 function initializeScrollMagic(video, video_section, triggerElement, duration, offset = 0) {
   // var videoDuration = video.duration;
+  var mq = window.matchMedia( "(min-width: 767.98px)" );
   var lastProgress = 0;
   var isAnimating = false;
 
@@ -22,10 +23,17 @@ function initializeScrollMagic(video, video_section, triggerElement, duration, o
         //   video.currentTime = newTime;
         //   console.log('Current time: ', video.currentTime);
         // }
-        lastProgress = e.progress;
-        if (!isAnimating) {
-          isAnimating = true;
-          requestAnimationFrame(updateVideoTime);
+        if (mq.matches) {
+          lastProgress = e.progress;
+          if (!isAnimating) {
+            isAnimating = true;
+            requestAnimationFrame(updateVideoTime);
+          }
+        } else {
+          let newTime = e.progress * video.duration;
+          if (newTime !== video.currentTime) {
+            video.currentTime = newTime;
+          }
         }
       } else {
         console.warn('Video duration is 0, cannot set currentTime');

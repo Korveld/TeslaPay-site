@@ -3,6 +3,7 @@ var controller = new ScrollMagic.Controller();
 // All videos animations logic
 function initializeScrollMagic(video, video_section, triggerElement, duration, offset = 0) {
   // var videoDuration = video.duration;
+  var mq = window.matchMedia( "(min-width: 767.98px)" );
   var lastProgress = 0;
   var isAnimating = false;
 
@@ -22,10 +23,17 @@ function initializeScrollMagic(video, video_section, triggerElement, duration, o
         //   video.currentTime = newTime;
         //   console.log('Current time: ', video.currentTime);
         // }
-        lastProgress = e.progress;
-        if (!isAnimating) {
-          isAnimating = true;
-          requestAnimationFrame(updateVideoTime);
+        if (mq.matches) {
+          lastProgress = e.progress;
+          if (!isAnimating) {
+            isAnimating = true;
+            requestAnimationFrame(updateVideoTime);
+          }
+        } else {
+          let newTime = e.progress * video.duration;
+          if (newTime !== video.currentTime) {
+            video.currentTime = newTime;
+          }
         }
       } else {
         console.warn('Video duration is 0, cannot set currentTime');
@@ -388,12 +396,18 @@ jQuery(function ($) {
   
 });
 
-$('.scrollContainer').on('scroll load', function () {
-  if ($(this).scrollTop() > 0) {
-    $('.header').addClass('is-sticky');
-  } else {
-    $('.header').removeClass('is-sticky');
-  }
+jQuery(function ($) {
+
+  $('.get-app-btn').fancybox({
+    afterShow : function( instance, current ) {
+      $('#phoneFormModal').show();
+      $('.phone-form__success').hide();
+    }
+  });
+  
+});
+
+jQuery(function ($) {
 });
 
 jQuery(function ($) {
@@ -427,7 +441,26 @@ jQuery(function ($) {
   
 });
 
-jQuery(function ($) {
+$('.scrollContainer').on('scroll load', function () {
+  if ($(this).scrollTop() > 0) {
+    $('.header').addClass('is-sticky');
+  } else {
+    $('.header').removeClass('is-sticky');
+  }
+});
+
+var scrollContainer = document.getElementById('scrollContainer');
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  var scrollpos = sessionStorage.getItem('scrollpos');
+  if (scrollpos) {
+    scrollContainer.scrollTo(0, scrollpos);
+    sessionStorage.removeItem('scrollpos');
+  }
+});
+
+window.addEventListener("beforeunload", function (e) {
+  sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
 });
 
 jQuery(function ($) {
@@ -458,28 +491,3 @@ jQuery(function ($) {
   
 });
 
-jQuery(function ($) {
-
-  $('.get-app-btn').fancybox({
-    afterShow : function( instance, current ) {
-      $('#phoneFormModal').show();
-      $('.phone-form__success').hide();
-    }
-  });
-  
-});
-
-
-var scrollContainer = document.getElementById('scrollContainer');
-
-document.addEventListener("DOMContentLoaded", function(event) {
-  var scrollpos = sessionStorage.getItem('scrollpos');
-  if (scrollpos) {
-    scrollContainer.scrollTo(0, scrollpos);
-    sessionStorage.removeItem('scrollpos');
-  }
-});
-
-window.addEventListener("beforeunload", function (e) {
-  sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
-});
