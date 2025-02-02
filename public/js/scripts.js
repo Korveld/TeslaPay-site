@@ -406,16 +406,6 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
-  
-  $('.faq__question').on('click', function(e) {
-    e.preventDefault();
-    $(this).parent().toggleClass('is-open');
-    $(this).next().slideToggle(500);
-  });
-  
-});
-
-jQuery(function ($) {
 
   if (!$.cookie('cookiesAccepted')) {
     $('#cookie-banner').show();
@@ -445,6 +435,16 @@ jQuery(function ($) {
     $.cookie('cookiesAccepted', 'false', { expires: 365, path: '/' });
     $('#cookie-banner').fadeOut(300);
     $('.cookie-banner__overflow').fadeOut(300);
+  });
+  
+});
+
+jQuery(function ($) {
+  
+  $('.faq__question').on('click', function(e) {
+    e.preventDefault();
+    $(this).parent().toggleClass('is-open');
+    $(this).next().slideToggle(500);
   });
   
 });
