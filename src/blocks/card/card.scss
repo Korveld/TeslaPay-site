@@ -43,6 +43,10 @@
     @media only screen and (max-width: theme('screens.mdMax.max')) {
       order: 1;
     }
+
+    p {
+      color: theme('colors.gray');
+    }
   }
 
   h4,
@@ -107,6 +111,15 @@
     h4,
     .h4 {
       margin-bottom: 28px;
+    }
+  }
+
+  &--type2 {
+    padding: 40px;
+    background: theme('colors.darkBlue');
+    border-radius: 30px;
+
+    .card__img {
     }
   }
 }

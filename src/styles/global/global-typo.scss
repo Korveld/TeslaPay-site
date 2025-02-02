@@ -9,6 +9,18 @@ h1,
     font-size: 80px;
     letter-spacing: -1.2px;
   }
+
+  &.h1--type2 {
+    font-size: 28px;
+    line-height: 120%;
+    font-weight: 600;
+    letter-spacing: -.4px;
+
+    @media only screen and (min-width: theme('screens.md')) {
+      font-size: 80px;
+      letter-spacing: -1.2px;
+    }
+  }
 }
 
 h2,
@@ -90,7 +102,7 @@ p,
   line-height: 150%;
   font-weight: 500;
   letter-spacing: -.3px;
-  color: theme('colors.gray');
+  color: theme('colors.secondary');
 
   @media only screen and (min-width: theme('screens.md')) {
     font-size: 20px;
@@ -153,21 +165,80 @@ a {
 }
 
 hr {
+  color: #47474a;
 }
 
 ul {
+  margin: 0 0 0 26px;
+  list-style-type: disc;
 
   li {
+    font-size: 15px;
+    line-height: 150%;
+    font-weight: 500;
+    letter-spacing: -.3px;
+    color: theme('colors.secondary');
+
+    @media only screen and (min-width: theme('screens.md')) {
+      font-size: 20px;
+      letter-spacing: -.4px;
+    }
   }
 }
 
 ol {
+  margin: 0 0 0 26px;
+  list-style: decimal;
 
   li {
+    font-size: 15px;
+    line-height: 150%;
+    font-weight: 500;
+    letter-spacing: -.3px;
+    color: theme('colors.secondary');
+
+    @media only screen and (min-width: theme('screens.md')) {
+      font-size: 20px;
+      letter-spacing: -.4px;
+    }
   }
 }
 
 table {
+  width: 100%;
+
+  th {
+    padding: 24px;
+    font-size: 15px;
+    line-height: 150%;
+    font-weight: 500;
+    text-align: left;
+    letter-spacing: -.3px;
+    color: theme('colors.secondary');
+    background: #202328;
+    border: 2px solid #47474a;
+
+    @media only screen and (min-width: theme('screens.md')) {
+      font-size: 20px;
+      letter-spacing: -.4px;
+    }
+  }
+
+  td {
+    padding: 24px;
+    font-size: 15px;
+    line-height: 150%;
+    font-weight: 500;
+    text-align: left;
+    letter-spacing: -.3px;
+    color: theme('colors.secondary');
+    border: 2px solid #47474a;
+
+    @media only screen and (min-width: theme('screens.md')) {
+      font-size: 20px;
+      letter-spacing: -.4px;
+    }
+  }
 }
 
 tr {

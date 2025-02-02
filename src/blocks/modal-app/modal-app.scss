@@ -5,6 +5,12 @@
   background: rgb(255, 255, 255);
   border-radius: 30px;
   box-shadow: 0 4px 36px 0 rgba(0, 0, 0, .15);
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
 
   @media only screen and (max-width: theme('screens.mdMax.max')) {
     padding: 48px;

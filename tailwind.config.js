@@ -95,7 +95,12 @@ module.exports = {
     }),
   ],
   safelist: [
-    'mb-3',
+    'flex',
+    'flex-col',
+    'gap-4',
+    'gap-8',
+    'p--md2',
+    'text-gray',
   ]
   /*safelist: [
     {

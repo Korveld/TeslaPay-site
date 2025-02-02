@@ -94,15 +94,28 @@
     line-height: 120%;
     font-weight: 500;
     border-radius: 50px;
+    transition: var(--transition-base);
 
     &--reject {
       color: theme('colors.dark2');
+      background-color: transparent;
       border: 2px solid theme('colors.dark2');
+
+      &:hover {
+        color: theme('colors.secondary');
+        background-color: theme('colors.gold');
+        border-color: theme('colors.gold');
+      }
     }
 
     &--accept {
       background: theme('colors.dark2');
       border: 2px solid theme('colors.dark2');
+
+      &:hover {
+        background-color: theme('colors.gold');
+        border-color: theme('colors.gold');
+      }
     }
   }
 

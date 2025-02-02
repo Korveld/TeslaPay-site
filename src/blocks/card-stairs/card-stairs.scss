@@ -1,0 +1,26 @@
+.card-stairs {
+  display: grid;
+  max-width: 1282px;
+  justify-content: center;
+  align-items: flex-start;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 24px;
+
+  @media only screen and (max-width: theme('screens.mdMax.max')) {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    $offset: 100px;
+
+    @for $i from 1 through 3 {
+
+      &:nth-of-type(#{$i + 1}) {
+
+        @media only screen and (min-width: theme('screens.md')) {
+          margin-top: #{$offset * $i};
+        }
+      }
+    }
+  }
+}

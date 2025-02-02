@@ -47,7 +47,7 @@ const paths = {
   },
   imagesWebp: {
     src: ['./src/images/*.{jpg,png}', './src/images/**/*.{jpg,png}'],
-    dest: './public/img/webp',
+    dest: './public/img',
     watch: ['./src/images/*', './src/images/**/*']
   },
   fonts: {
@@ -59,6 +59,11 @@ const paths = {
     src: './src/videos/*',
     dest: './public/videos',
     watch: './src/videos/*'
+  },
+  libs: {
+    src: './src/libs/*',
+    dest: './public/libs',
+    watch: './src/libs/*'
   },
 };
 
@@ -166,6 +171,15 @@ gulp.task('videos', function () {
     }));
 });
 
+gulp.task('libs', function () {
+  return gulp.src(paths.libs.src)
+    .pipe(plumber())
+    .pipe(gulp.dest(paths.libs.dest))
+    .pipe(browserSync.reload({
+      stream: true
+    }));
+});
+
 gulp.task('server', function () {
   browserSync.init({
     server: {
@@ -194,6 +208,7 @@ gulp.task('watch', function () {
   gulp.watch(paths.images.watch, gulp.parallel('images'));
   gulp.watch(paths.fonts.watch, gulp.parallel('fonts'));
   gulp.watch(paths.videos.watch, gulp.parallel('videos'));
+  gulp.watch(paths.videos.watch, gulp.parallel('libs'));
   // gulp.watch(paths.webfonts.watch, gulp.parallel('webfonts'));
 });
 
@@ -204,6 +219,7 @@ gulp.task('dev', gulp.series(
   'scripts',
   'fonts',
   'videos',
+  'libs',
   'images',
   'images-webp',
   'server'
@@ -216,6 +232,7 @@ gulp.task('build', gulp.series(
   'scripts',
   'fonts',
   'videos',
+  'libs',
   'images',
   'images-webp',
 ));

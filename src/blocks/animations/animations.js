@@ -1,49 +1,85 @@
 var controller = new ScrollMagic.Controller();
 
 // All videos animations logic
-function initializeScrollMagic(video, video_section, triggerElement, duration, offset = 0) {
+function initializeScrollMagic(video, video_section, triggerElement, duration, offset = 0, videoHeight) {
+  var mqMob = window.matchMedia("(max-width: 768px)");
+  var mq = window.matchMedia("(min-width: 767.98px)");
   // var videoDuration = video.duration;
-  var mq = window.matchMedia( "(min-width: 767.98px)" );
   var lastProgress = 0;
   var isAnimating = false;
   var progressvalue;
+  
+  // duration = duration ? duration : video_section.scrollHeight - window.innerHeight;
+  duration = duration ? duration : video_section.scrollHeight;
+  if (mqMob.matches) {
+    duration = duration ? duration : window.outerHeight;
+  }
+
+  $(video).height(videoHeight ? videoHeight : window.outerHeight - 40);
 
   // Create a ScrollMagic scene
-  new ScrollMagic.Scene({
-    duration: duration ? duration : video_section.scrollHeight - window.innerHeight,
+  const scene = new ScrollMagic.Scene({
+    duration: duration,
     triggerElement: triggerElement,
     triggerHook: 0,
     offset: offset,
   })
     .on('progress', (e) => {
-      // Map scroll progress to video time
-      console.log('Progress:', e.progress, 'Duration:', video.duration);
-      if (video.duration > 0) {
-        // let newTime = e.progress * video.duration;
-        // if (newTime !== video.currentTime) {
-        //   video.currentTime = newTime;
-        //   console.log('Current time: ', video.currentTime);
-        // }
-        /*if (mq.matches) {
-          lastProgress = e.progress;
-          if (!isAnimating) {
-            isAnimating = true;
-            requestAnimationFrame(updateVideoTime);
-          }
+      if (video.id === 'video1' && mq.matches) {
+        // Map scroll progress to video time
+        console.log('Progress:', e.progress, 'Current time: ', video.currentTime, 'Duration:', video.duration);
+        if (video.duration > 0) {
+          // let newTime = e.progress * video.duration;
+          // if (newTime !== video.currentTime) {
+          //   video.currentTime = newTime;
+          //   console.log('Current time: ', video.currentTime);
+          // }
+          /*if (mq.matches) {
+            lastProgress = e.progress;
+            if (!isAnimating) {
+              isAnimating = true;
+              requestAnimationFrame(updateVideoTime);
+            }
+          } else {
+            let newTime = e.progress * video.duration;
+            if (newTime !== video.currentTime) {
+              video.currentTime = newTime;
+            }
+          }*/
+          progressvalue = Math.floor(100 * e.progress);
+          video.currentTime = video.duration * progressvalue / 100;
         } else {
-          let newTime = e.progress * video.duration;
-          if (newTime !== video.currentTime) {
-            video.currentTime = newTime;
-          }
-        }*/
-        progressvalue = Math.floor(100 * e.progress);
-        video.currentTime = video.duration * progressvalue / 100;
-      } else {
-        console.warn('Video duration is 0, cannot set currentTime');
+          console.warn('Video duration is 0, cannot set currentTime');
+        }
+        video.pause(); // Pause to prevent auto-play behavior
+      } else if (video.id !== 'video1') {
+        console.log('Progress:', e.progress, 'Current time: ', video.currentTime, 'Duration:', video.duration);
+        if (video.duration > 0) {
+          progressvalue = Math.floor(100 * e.progress);
+          video.currentTime = video.duration * progressvalue / 100;
+        } else {
+          console.warn('Video duration is 0, cannot set currentTime');
+        }
+        video.pause();
       }
-      video.pause(); // Pause to prevent auto-play behavior
     })
+    // .addIndicators({name: video.id})
     .addTo(controller);
+  // scene.on("change update progress start end enter leave", callback);
+
+  if (mqMob.matches && video.id === 'video1') {
+    scene.on("enter", function () {
+      console.log(video.id, ' enter');
+      video.pause();
+      video.currentTime = 0.1;
+      video.play();
+    });
+    scene.on("leave", function () {
+      console.log(video.id, ' leave');
+      // video.pause();
+      // video.currentTime = 0.1;
+    });
+  }
 
   function updateVideoTime() {
     video.currentTime = video.duration * lastProgress;
@@ -99,37 +135,48 @@ function setupVideos() {
 
   function initializeAllScrollMagic() {
     videos.forEach((video) => {
-      $(video).height(window.outerHeight - 40);
       var video_section = video.closest('section');
       var triggerElement = `#${video_section.id}`;
       var duration;
       var offset;
+      var videoHeight;
 
       if (video.id === 'video2') {
         duration = 500;
         offset = -300;
       }
 
-      if (video.id === 'video3') {
-        offset = -300;
+      if (video.id === 'video4') {
+        duration = 900;
+        offset = 0;
+      }
+      
+      if (video.id === 'video4_mobile') {
+        duration = 400;
+        offset = 0;
       }
 
       if (mqMob.matches) {
+        if (video.id === 'video1') {
+          offset = -200;
+        }
         if (video.id === 'video2') {
           duration = 500;
           offset = -450;
         }
         if (video.id === 'video3') {
-          offset = -100;
         }
       }
 
-      initializeScrollMagic(video, video_section, triggerElement, duration, offset);
+      initializeScrollMagic(video, video_section, triggerElement, duration, offset, videoHeight);
     });
   }
 }
 
-document.addEventListener('DOMContentLoaded', setupVideos);
+// document.addEventListener('DOMContentLoaded', setupVideos);
+jQuery(function ($) {
+  setupVideos();
+});
 // End all videos animations logic
 
 // Video 3 and phone section animations logic
