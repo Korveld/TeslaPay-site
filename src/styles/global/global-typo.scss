@@ -47,6 +47,19 @@ h2,
       letter-spacing: -.9px;
     }
   }
+
+  &.h2--type3 {
+    font-size: 20px;
+    line-height: 120%;
+    font-weight: 600;
+    letter-spacing: -.3px;
+
+    @media only screen and (min-width: theme('screens.md')) {
+      font-size: 59px;
+      line-height: 89%;
+      letter-spacing: -.9px;
+    }
+  }
 }
 
 h3,

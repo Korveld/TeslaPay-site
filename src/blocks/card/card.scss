@@ -23,6 +23,12 @@
 
   &__img {
 
+    @media only screen and (min-width: theme('screens.md')) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     @media only screen and (max-width: theme('screens.mdMax.max')) {
       flex: 1 0 auto;
       order: 2;
@@ -79,6 +85,7 @@
     .card__img {
       padding-top: 10px;
       padding-bottom: 10px;
+      display: block;
       flex: 1 0 auto;
 
       @media only screen and (max-width: theme('screens.mdMax.max')) {

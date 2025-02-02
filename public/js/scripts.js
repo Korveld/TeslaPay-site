@@ -449,6 +449,14 @@ jQuery(function ($) {
   
 });
 
+$('.scrollContainer').on('scroll load', function () {
+  if ($(this).scrollTop() > 0) {
+    $('.header').addClass('is-sticky');
+  } else {
+    $('.header').removeClass('is-sticky');
+  }
+});
+
 jQuery(function ($) {
   
   let iti;
@@ -535,14 +543,6 @@ jQuery(function ($) {
   
 });
 
-$('.scrollContainer').on('scroll load', function () {
-  if ($(this).scrollTop() > 0) {
-    $('.header').addClass('is-sticky');
-  } else {
-    $('.header').removeClass('is-sticky');
-  }
-});
-
 jQuery(function ($) {
 
   var mq = window.matchMedia( "(min-width: 767.98px)" );
@@ -577,6 +577,16 @@ jQuery(function ($) {
 jQuery(function ($) {
 });
 
+jQuery(function ($) {
+  var mq = window.matchMedia("(min-width: 767.98px)");
+  if (mq.matches) {
+    if ($('.js-plan-text').length) {
+      $('.js-plan-text').equalHeights()
+    }
+  }
+});
+
+
 var scrollContainer = document.getElementById('scrollContainer');
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -590,4 +600,3 @@ document.addEventListener("DOMContentLoaded", function(event) {
 window.addEventListener("beforeunload", function (e) {
   sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
 });
-
