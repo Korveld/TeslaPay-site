@@ -16,6 +16,14 @@ function initializeScrollMagic(video, video_section, triggerElement, duration, o
   }
 
   $(video).height(videoHeight ? videoHeight : window.outerHeight - 40);
+  video.controls = false;
+
+  video.addEventListener('play', function () {
+    this.controls = false;
+  });
+  video.addEventListener('pause', function () {
+    this.controls = false;
+  });
 
   // Create a ScrollMagic scene
   const scene = new ScrollMagic.Scene({
