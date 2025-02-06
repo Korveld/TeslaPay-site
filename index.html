@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="./public/libs/intlTelInput.css?v=25.3.0">
-  <link rel="stylesheet" href="./public/css/style.css?v=1.1.5">
+  <link rel="stylesheet" href="./public/css/style.css?v=1.1.6">
 
   <style>
     /* Hide the page content initially */
@@ -30,25 +30,26 @@
         <a href="/" class="header__logo">
           <img src="./public/img/Logo.svg" alt="">
         </a>
-
+        
+        <button type="button" class="menu-burger"></button>
         <ul class="menu">
           <li>
-            <a href="#">Home</a>
+            <a href="#home" class="js-scroll-to">Home</a>
           </li>
           <li>
-            <a href="#">Products</a>
+            <a href="#products" class="js-scroll-to">Products</a>
           </li>
           <li>
-            <a href="#">Security</a>
+            <a href="#security" class="js-scroll-to">Security</a>
           </li>
           <li>
-            <a href="#">Plans</a>
+            <a href="#plans" class="js-scroll-to">Plans</a>
           </li>
           <li>
             <a href="#">Support</a>
           </li>
           <li>
-            <a href="#">FAQ</a>
+            <a href="#faq" class="js-scroll-to">FAQ</a>
           </li>
         </ul>
 
@@ -90,7 +91,7 @@
   </header>
 
   <main class="main">
-    <section class="py-[60px] relative min-h-[calc(100vh-78px)] flex items-center">
+    <section class="py-[60px] relative min-h-[calc(100vh-78px)] flex items-center" id="home">
       <div class="container-fluid mdMax:px-[48px]">
         <div class="max-w-[1077px] mx-auto">
           <h1 class="md:mb-[80px] mb-[40px] uppercase">Your money, simplified.<br>
@@ -165,13 +166,13 @@
     </section>
 
     <section class="py-[20px] px-4 md:h-[10000px] relative" id="videoSection1">
-      <video id="video1" class="video js-video mdMax:!static" muted preload="auto">
+      <video id="video1" class="video js-video mdMax:!static" muted playsinline preload="auto">
         <source src="./public/videos/Video1.mp4#t=0.1" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </section>
     
-    <section class="md:pt-[120px] md:pb-[80px] py-[64px]">
+    <section class="md:pt-[120px] md:pb-[80px] py-[64px]" id="products">
       <div class="container mdMax:px-[48px]">
         <!--<div class="badge md:mb-[70px] mdMax:hidden">
           <span>Accounts</span>
@@ -518,13 +519,13 @@
         </div>
       </div>
       <div class="container max-w-[1360px] mdMax:hidden">
-        <video id="video4" class="video js-video" muted preload="auto">
+        <video id="video4" class="video js-video" muted playsinline preload="auto">
           <source src="./public/videos/Video4.mp4#t=0.1" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
       <div class="md:hidden py-4">
-        <video id="video4_mobile" class="video js-video" muted preload="auto">
+        <video id="video4_mobile" class="video js-video" muted playsinline preload="auto">
           <source src="./public/videos/Video4_mobile.mp4#t=0.1" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -681,7 +682,7 @@
       </div>
     </section>
     
-    <section class="md:pt-[195px] md:pb-[92px] py-[64px]">
+    <section class="md:pt-[195px] md:pb-[92px] py-[64px]" id="security">
       <div class="container mdMax:px-[48px]">
         <h2 class="h1 h1--type2 md:mb-[117px] mb-[48px]">Safety first</h2>
         <h2 class="h2--type3 md:mb-[120px] mb-[48px]">Profile security</h2>
@@ -836,7 +837,7 @@
     </section>
 
     <section class="py-[20px] px-4 relative" id="videoSection2">
-      <video id="video2" class="video js-video" muted style="position: static !important;" preload="auto">
+      <video id="video2" class="video js-video" muted playsinline style="position: static !important;" preload="auto">
         <source src="./public/videos/Video2.mp4#t=0.1" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -856,7 +857,7 @@
     <section class="video-section" id="videoSection3">
       <div class="video-container">
         <div class="video-section__video">
-          <video id="scroll-video" muted preload="auto">
+          <video id="scroll-video" muted playsinline preload="auto">
             <source src="./public/videos/Video3.mp4#t=0.1" type="video/mp4">
             Your browser does not support the video tag.
           </video>
@@ -891,7 +892,7 @@
       </div>
     </section>
     
-    <section class="md:pt-[80px] md:pb-[160px] py-[48px]">
+    <section class="md:pt-[80px] md:pb-[160px] py-[48px]" id="plans">
       <div class="container">
         <h2 class="h1 mdMax:text-[28px] text-center md:mb-[142px] mb-[24px]">Choose your plan</h2>
         <div class="grid md:grid-cols-3 grid-cols-1 gap-[8px]">
@@ -961,7 +962,7 @@
       </div>
     </section>
     
-    <section class="md:pt-[120px] md:pb-[100px] py-[48px]">
+    <section class="md:pt-[120px] md:pb-[100px] py-[48px]" id="faq">
       <div class="container mdMax:px-[48px]">
         <h2 class="h1 mdMax:text-[27px] text-center md:mb-[150px] mb-[40px]">Questions?<br>
           We have answers!</h2>
@@ -1043,19 +1044,22 @@
       <div class="footer__nav-grid">
         <ul class="footer__nav">
           <li>
-            <a href="#">Home</a>
+            <a href="#home" class="js-scroll-to">Home</a>
           </li>
           <li>
-            <a href="#">Accounts and Cards</a>
+            <a href="#products" class="js-scroll-to">Products</a>
           </li>
           <li>
-            <a href="#">Security</a>
+            <a href="#security" class="js-scroll-to">Security</a>
           </li>
           <li>
-            <a href="#">Plans</a>
+            <a href="#plans" class="js-scroll-to">Plans</a>
           </li>
           <li>
             <a href="#">Support</a>
+          </li>
+          <li>
+            <a href="#faq" class="js-scroll-to">FAQ</a>
           </li>
         </ul>
         <ul class="footer__nav">
@@ -1195,6 +1199,6 @@
 <!--<script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>-->
 <script src="./public/libs/intlTelInputWithUtils.min.js?v=25.3.0"></script>
 <script src="./public/js/vendor-min.js?v=1.1.2"></script>
-<script src="./public/js/scripts-min.js?v=1.1.5"></script>
+<script src="./public/js/scripts-min.js?v=1.1.6"></script>
 </body>
 </html>

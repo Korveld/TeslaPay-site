@@ -27,4 +27,11 @@ jQuery(function ($) {
     }
   });
   
+  $('.lang-switcher__dropdown-item').on('mouseenter', function (e) {
+    $(this).siblings('.lang-switcher__dropdown-item').addClass('is-disabled');
+  });
+  $('.lang-switcher__dropdown-item').on('mouseleave', function (e) {
+    $(this).siblings('.lang-switcher__dropdown-item').removeClass('is-disabled');
+  });
+  
 });
