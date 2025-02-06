@@ -187,6 +187,151 @@ jQuery(function ($) {
 });
 // End all videos animations logic
 
+jQuery(function ($) {
+  // responsive breakpoints
+  var mqMob = window.matchMedia("(max-width: 768px)");
+  var mq = window.matchMedia("(min-width: 767.98px)");
+  
+  // define images
+  var images = [];
+  var animationPlaying = false;
+  var frameIndex = 1;
+  var frameCount = 420;
+  var currentFrame = (index) => `./public/videos/video1/video${index.toString().padStart(3, '0')}.jpg`;
+
+  // Preload images
+  var preloadImages = () => {
+    for (let i = 1; i <= frameCount; i++) {
+      $("<img>").attr("src", currentFrame(i));
+      images.push(currentFrame(i));
+    }
+  };
+  preloadImages();
+
+  if (mq.matches) {
+    $('.video-sequence-canvas').height(window.outerHeight - 40);
+  }
+
+  // Update Image Frame
+  function updateImage(index) {
+    $("#videoSequence1 img").attr("src", images[index])
+  }
+
+  // Play Animation Function
+  function playAnimation() {
+    if (animationPlaying) return;
+
+    animationPlaying = true;
+    frameIndex = 1;
+
+    var animationInterval = setInterval(() => {
+      if (frameIndex >= frameCount) {
+        clearInterval(animationInterval);
+        animationPlaying = false;
+      } else {
+        updateImage(frameIndex);
+        frameIndex++;
+      }
+    }, 30); // Adjust speed here (30ms per frame)
+  }
+
+  // build scene
+  if (mqMob.matches) {
+    new ScrollMagic.Scene({
+      triggerElement: "#videoSequence1",
+      duration: 0,
+      triggerHook: 0.5,
+      offset: 0,
+    })
+      .on('enter', (e) => {
+        playAnimation();
+      })
+      // .addIndicators({name: 'image sequence'})
+      .addTo(controller);
+  }
+  
+  if (mq.matches) {
+    // TweenMax can tween any property of any object. We use this object to cycle through the array
+    var obj = {curImg: 0};
+    
+    // create tween
+    var tween = TweenMax.to(obj, 0.5,
+      {
+        curImg: images.length - 1,	// animate propery curImg to number of images
+        roundProps: "curImg",				// only integers so it can be used as an array index
+        repeat: 0,									// repeat 0 times
+        immediateRender: true,			// load first image automatically
+        ease: Linear.easeNone,			// show every image the same ammount of time
+        onUpdate: function () {
+          console.log('playAnimation');
+          $("#videoSequence1 img").attr("src", images[obj.curImg]); // set the image source
+        },
+      }
+    );
+    
+    new ScrollMagic.Scene({
+      triggerElement: "#videoSequence1",
+      duration: $('#videoSequence1')[0].scrollHeight,
+      triggerHook: 0,
+      offset: 0,
+    })
+      .setTween(tween)
+      //.addIndicators({name: 'image sequence'})
+      .addTo(controller);
+  }
+});
+
+/*jQuery(function ($) {
+  const $canvas = $("#videoSequenceCanvas");
+  const context = $canvas[0].getContext("2d");
+
+  const frameCount = 420;
+  const currentFrame = index =>
+    `./public/videos/video1/video${index.toString().padStart(3, '0')}.jpg`;
+
+  // Preload images
+  const preloadImages = () => {
+    for (let i = 1; i <= frameCount; i++) {
+      $("<img>").attr("src", currentFrame(i));
+    }
+  };
+
+  // Initialize canvas with first frame
+  const img = new Image();
+  img.src = currentFrame(1);
+
+  $(img).on("load", function () {
+    context.drawImage(img, 0, 0);
+  });
+
+  // Function to update image
+  const updateImage = index => {
+    img.src = currentFrame(index);
+    context.drawImage(img, 0, 0);
+  };
+
+  // Initialize ScrollMagic
+  const $trigger = $("#videoSequence1"); // The element that triggers animation
+
+  const scene = new ScrollMagic.Scene({
+    triggerElement: $trigger[0], // Convert jQuery object to DOM element
+    duration: 10000,
+    triggerHook: 0,
+    offset: 0,
+  })
+    //.setPin($canvas[0]) // Keep canvas fixed during animation
+    .on("progress", function (event) {
+      const frameIndex = Math.min(
+        frameCount - 1,
+        Math.ceil(event.progress * frameCount)
+      );
+      requestAnimationFrame(() => updateImage(frameIndex + 1));
+    })
+    .addTo(controller);
+
+  preloadImages();
+});*/
+
 // Video 3 and phone section animations logic
 jQuery(function ($) {
   var mq = window.matchMedia( "(min-width: 767.98px)" );

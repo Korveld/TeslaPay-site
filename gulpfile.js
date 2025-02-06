@@ -56,7 +56,7 @@ const paths = {
     watch: './src/fonts/*'
   },
   videos: {
-    src: './src/videos/*',
+    src: ['./src/videos/*', './src/videos/**/*'],
     dest: './public/videos',
     watch: './src/videos/*'
   },
