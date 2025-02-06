@@ -263,7 +263,6 @@ jQuery(function ($) {
         immediateRender: true,			// load first image automatically
         ease: Linear.easeNone,			// show every image the same ammount of time
         onUpdate: function () {
-          console.log('playAnimation');
           $("#videoSequence1 img").attr("src", images[obj.curImg]); // set the image source
         },
       }
