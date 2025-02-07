@@ -5,11 +5,11 @@ jQuery(function ($) {
     var $container = $('#scrollContainer'),
       $scrollTo = $($($(this).attr('href')));
     
-    $container.scrollTop(
+    /*$container.scrollTop(
       $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
-    );
-    /*$container.animate({
+    );*/
+    $container.animate({
       scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
-    }, 800);*/
+    }, 500);
   });
 });

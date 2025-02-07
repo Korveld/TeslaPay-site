@@ -593,36 +593,6 @@ jQuery(function ($) {
 
 jQuery(function ($) {
   
-  $('.faq__question').on('click', function(e) {
-    e.preventDefault();
-    if ($(this).parent().hasClass('is-open')) {
-      $(this).parent().removeClass('is-open');
-      $(this).next().slideUp({
-        duration: 500,
-        start: function() {
-          $(this).find('.faq__answer-wrapper').css('opacity', '0');
-        }
-      });
-    } else {
-      $(this).parent().addClass('is-open');
-      $(this).next().slideDown({
-        duration: 500,
-        // complete: function() {
-        //   $(this).find('.faq__answer-wrapper').css('opacity', '1');
-        // },
-        progress: function(animation, progress, remainingMs) {
-          if (remainingMs < 100) {
-            $(this).find('.faq__answer-wrapper').css('opacity', '1');
-          }
-        }
-      });
-    }
-  });
-  
-});
-
-jQuery(function ($) {
-  
   let iti;
 
   $('.get-app-btn').fancybox({
@@ -707,6 +677,36 @@ jQuery(function ($) {
   
 });
 
+jQuery(function ($) {
+  
+  $('.faq__question').on('click', function(e) {
+    e.preventDefault();
+    if ($(this).parent().hasClass('is-open')) {
+      $(this).parent().removeClass('is-open');
+      $(this).next().slideUp({
+        duration: 500,
+        start: function() {
+          $(this).find('.faq__answer-wrapper').css('opacity', '0');
+        }
+      });
+    } else {
+      $(this).parent().addClass('is-open');
+      $(this).next().slideDown({
+        duration: 500,
+        // complete: function() {
+        //   $(this).find('.faq__answer-wrapper').css('opacity', '1');
+        // },
+        progress: function(animation, progress, remainingMs) {
+          if (remainingMs < 100) {
+            $(this).find('.faq__answer-wrapper').css('opacity', '1');
+          }
+        }
+      });
+    }
+  });
+  
+});
+
 $('.scrollContainer').on('scroll load', function () {
   if ($(this).scrollTop() > 0) {
     $('.header').addClass('is-sticky');
@@ -754,19 +754,50 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
-  $('.menu-burger').on('click', function (e) {
-    e.preventDefault();
-    $(this).toggleClass('is-active');
+});
+
+jQuery(function ($) {
+  var mqMob = window.matchMedia("(max-width: 768px)");
+  
+  function toggleMenu() {
+    $('.menu-burger').toggleClass('is-active');
     $('.menu').fadeToggle({
       duration: 300,
       start: function () {
         $(this).css('display','flex')
       }
     });
+  }
+  
+  if (mqMob.matches) {
+    $('.menu a').on('click', function (e) {
+      toggleMenu();
+    });
+  }
+  
+  $('.menu-burger').on('click', function (e) {
+    e.preventDefault();
+    toggleMenu();
   });
 });
 
 jQuery(function ($) {
+  
+});
+
+
+var scrollContainer = document.getElementById('scrollContainer');
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  var scrollpos = sessionStorage.getItem('scrollpos');
+  if (scrollpos) {
+    scrollContainer.scrollTo(0, scrollpos);
+    sessionStorage.removeItem('scrollpos');
+  }
+});
+
+window.addEventListener("beforeunload", function (e) {
+  sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
 });
 
 jQuery(function ($) {
@@ -785,26 +816,11 @@ jQuery(function ($) {
     var $container = $('#scrollContainer'),
       $scrollTo = $($($(this).attr('href')));
     
-    $container.scrollTop(
+    /*$container.scrollTop(
       $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
-    );
-    /*$container.animate({
+    );*/
+    $container.animate({
       scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
-    }, 800);*/
+    }, 500);
   });
-});
-
-
-var scrollContainer = document.getElementById('scrollContainer');
-
-document.addEventListener("DOMContentLoaded", function(event) {
-  var scrollpos = sessionStorage.getItem('scrollpos');
-  if (scrollpos) {
-    scrollContainer.scrollTo(0, scrollpos);
-    sessionStorage.removeItem('scrollpos');
-  }
-});
-
-window.addEventListener("beforeunload", function (e) {
-  sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
 });
