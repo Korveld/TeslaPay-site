@@ -5,6 +5,8 @@
   },
   "dependencies": {
     "@tailwindcss/postcss7-compat": "npm:@tailwindcss/postcss7-compat@^2.0.1",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
     "postcss": "^8.4.24",
     "tailwindcss": "^3.3.2"
   },

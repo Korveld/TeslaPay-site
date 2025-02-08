@@ -12,18 +12,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="./public/libs/intlTelInput.css?v=25.3.0">
-  <link rel="stylesheet" href="./public/css/style.css?v=1.1.8">
-
-  <style>
-    /* Hide the page content initially */
-    .scrollContainer {
-      visibility: hidden;
-    }
-  </style>
+  <link rel="stylesheet" href="./public/css/style.css?v=1.1.9">
 </head>
 <body>
 
-<div class="scrollContainer" id="scrollContainer">
+<div id="preloader">
+  <div class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
+  <div id="progress-text">0%</div>
+</div>
+
+<div class="scrollContainer" id="scrollContainer" style="visibility: hidden;">
   <header class="header">
     <div class="header__box">
       <div class="header__box-container">
@@ -173,8 +173,8 @@
     </section>-->
 
     <section class="py-[20px] px-4 md:h-[9000px] relative" id="videoSequence1">
-      <div id="videoSequenceCanvas" class="video-sequence-canvas">
-        <img src="./public/videos/video1/video001.jpg" alt="">
+      <div class="video-sequence">
+        <img src="./public/videos/video1/video000.jpg" alt="">
       </div>
     </section>
     
@@ -517,25 +517,29 @@
       </div>
     </section>
 
-    <section class="md:pt-[144px] md:pb-[80px] py-[46px]" id="videoSection4">
+    <section class="md:pt-[144px] md:pb-[80px] py-[46px]" id="videoSequence4">
       <div class="container">
         <div class="mdMax:px-[32px] md:max-w-[408px] relative z-10">
           <h1 class="h1--type2 md:mb-[72px] mb-[28px]">Cards</h1>
           <p class="text-gray">Special features for personalized security settings. These include location-based transaction triggers, trusted merchant status, gambling blocks, and much more.</p>
         </div>
       </div>
-      <div class="container max-w-[1360px] mdMax:hidden">
-        <video id="video4" class="video js-video" muted playsinline preload="auto">
+      <div class="container max-w-[1360px] mdMax:px-0">
+        <!--<video id="video4" class="video js-video" muted playsinline preload="auto">
           <source src="./public/videos/Video4.mp4#t=0.1" type="video/mp4">
           Your browser does not support the video tag.
-        </video>
+        </video>-->
+        <div class="video-sequence">
+          <img src="./public/videos/video4/video000.jpg" alt="" class="mdMax:!hidden">
+          <img src="./public/videos/video4_mob/video000.jpg" alt="" class="md:!hidden">
+        </div>
       </div>
-      <div class="md:hidden py-4">
+      <!--<div class="md:hidden py-4">
         <video id="video4_mobile" class="video js-video" muted playsinline preload="auto">
           <source src="./public/videos/Video4_mobile.mp4#t=0.1" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-      </div>
+      </div>-->
       <div class="container card-stairs">
         <div class="card">
           <div class="card__img">
@@ -842,11 +846,14 @@
       </div>
     </section>
 
-    <section class="py-[20px] px-4 relative" id="videoSection2">
-      <video id="video2" class="video js-video" muted playsinline style="position: static !important;" preload="auto">
+    <section class="py-[20px] px-4 relative" id="videoSequence2">
+      <!--<video id="video2" class="video js-video" muted playsinline style="position: static !important;" preload="auto">
         <source src="./public/videos/Video2.mp4#t=0.1" type="video/mp4">
         Your browser does not support the video tag.
-      </video>
+      </video>-->
+      <div class="video-sequence">
+        <img src="./public/videos/video2/video000.jpg" alt="">
+      </div>
     </section>
     
     <section class="md:py-[120px] py-[64px]">
@@ -860,13 +867,14 @@
       </div>
     </section>
 
-    <section class="video-section" id="videoSection3">
+    <section class="video-section" id="videoSequence3">
       <div class="video-container">
         <div class="video-section__video">
-          <video id="scroll-video" muted playsinline preload="auto">
+          <img src="./public/videos/video3/video000.jpg" alt="" class="video-section__video-img">
+          <!--<video id="scroll-video" muted playsinline preload="auto">
             <source src="./public/videos/Video3.mp4#t=0.1" type="video/mp4">
             Your browser does not support the video tag.
-          </video>
+          </video>-->
           <img
             src="./public/img/phone-animations/logo.png"
             class="pointer-events-none select-none video-section__logo"
@@ -1205,6 +1213,6 @@
 <!--<script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>-->
 <script src="./public/libs/intlTelInputWithUtils.min.js?v=25.3.0"></script>
 <script src="./public/js/vendor-min.js?v=1.1.2"></script>
-<script src="./public/js/scripts-min.js?v=1.1.8"></script>
+<script src="./public/js/scripts-min.js?v=1.1.9"></script>
 </body>
 </html>

@@ -1,215 +1,27 @@
 var controller = new ScrollMagic.Controller();
 
-// All videos animations logic
-function initializeScrollMagic(video, video_section, triggerElement, duration, offset = 0, videoHeight) {
-  var mqMob = window.matchMedia("(max-width: 768px)");
-  var mq = window.matchMedia("(min-width: 767.98px)");
-  // var videoDuration = video.duration;
-  var lastProgress = 0;
-  var isAnimating = false;
-  var progressvalue;
-  
-  // duration = duration ? duration : video_section.scrollHeight - window.innerHeight;
-  duration = duration ? duration : video_section.scrollHeight;
-  if (mqMob.matches) {
-    duration = duration ? duration : window.outerHeight;
-  }
-
-  $(video).height(videoHeight ? videoHeight : window.outerHeight - 40);
-  video.controls = false;
-
-  video.addEventListener('play', function () {
-    this.controls = false;
-  });
-  video.addEventListener('pause', function () {
-    this.controls = false;
-  });
-
-  // Create a ScrollMagic scene
-  const scene = new ScrollMagic.Scene({
-    duration: duration,
-    triggerElement: triggerElement,
-    triggerHook: 0,
-    offset: offset,
-  })
-    .on('progress', (e) => {
-      if (video.id === 'video1' && mq.matches) {
-        // Map scroll progress to video time
-        console.log('Progress:', e.progress, 'Current time: ', video.currentTime, 'Duration:', video.duration);
-        if (video.duration > 0) {
-          // let newTime = e.progress * video.duration;
-          // if (newTime !== video.currentTime) {
-          //   video.currentTime = newTime;
-          //   console.log('Current time: ', video.currentTime);
-          // }
-          /*if (mq.matches) {
-            lastProgress = e.progress;
-            if (!isAnimating) {
-              isAnimating = true;
-              requestAnimationFrame(updateVideoTime);
-            }
-          } else {
-            let newTime = e.progress * video.duration;
-            if (newTime !== video.currentTime) {
-              video.currentTime = newTime;
-            }
-          }*/
-          progressvalue = Math.floor(100 * e.progress);
-          video.currentTime = video.duration * progressvalue / 100;
-        } else {
-          console.warn('Video duration is 0, cannot set currentTime');
-        }
-        video.pause(); // Pause to prevent auto-play behavior
-      } else if (video.id !== 'video1') {
-        console.log('Progress:', e.progress, 'Current time: ', video.currentTime, 'Duration:', video.duration);
-        if (video.duration > 0) {
-          progressvalue = Math.floor(100 * e.progress);
-          video.currentTime = video.duration * progressvalue / 100;
-        } else {
-          console.warn('Video duration is 0, cannot set currentTime');
-        }
-        video.pause();
-      }
-    })
-    // .addIndicators({name: video.id})
-    .addTo(controller);
-  // scene.on("change update progress start end enter leave", callback);
-
-  if (mqMob.matches && video.id === 'video1') {
-    scene.on("enter", function () {
-      console.log(video.id, ' enter');
-      video.pause();
-      video.currentTime = 0.1;
-      video.play();
-    });
-    scene.on("leave", function () {
-      console.log(video.id, ' leave');
-      // video.pause();
-      // video.currentTime = 0.1;
-    });
-  }
-
-  function updateVideoTime() {
-    video.currentTime = video.duration * lastProgress;
-    console.log('Current time: ', video.currentTime);
-    isAnimating = false;
-  }
-}
-
-function setupVideos() {
-  var videos = document.querySelectorAll('.js-video');
-  var mqMob = window.matchMedia("(max-width: 768px)");
-  var loadedCount = 0;
-  var timeoutFallback = 5000; // 5 seconds fallback timer
-
-  function checkAllVideosLoaded() {
-    loadedCount++;
-    if (loadedCount === videos.length) {
-      showPageAndInitialize();
-    }
-  }
-
-  function forceVideoLoad(video) {
-    video.play()
-      .then(() => {
-        console.log('video loaded:', video);
-        video.pause();
-      })
-      .catch(error => {
-        console.error("Error forcing video to load:", error);
-      });
-  }
-
-  function showPageAndInitialize() {
-    clearTimeout(fallbackTimer);
-    document.querySelector('.scrollContainer').style.visibility = 'visible';
-    initializeAllScrollMagic();
-  }
-
-  var fallbackTimer = setTimeout(() => {
-    console.warn("Fallback triggered: Not all videos loaded in time");
-    showPageAndInitialize();
-  }, timeoutFallback);
-
-  videos.forEach(video => {
-    if (video.readyState >= 2) {
-      checkAllVideosLoaded();
-    } else {
-      forceVideoLoad(video);
-      video.addEventListener('loadeddata', checkAllVideosLoaded);
-      video.addEventListener('error', checkAllVideosLoaded); // Handle errors
-    }
-  });
-
-  function initializeAllScrollMagic() {
-    videos.forEach((video) => {
-      var video_section = video.closest('section');
-      var triggerElement = `#${video_section.id}`;
-      var duration;
-      var offset;
-      var videoHeight;
-
-      if (video.id === 'video2') {
-        duration = 500;
-        offset = -300;
-      }
-
-      if (video.id === 'video4') {
-        duration = 900;
-        offset = 0;
-      }
-      
-      if (video.id === 'video4_mobile') {
-        duration = 400;
-        offset = 0;
-      }
-
-      if (mqMob.matches) {
-        if (video.id === 'video1') {
-          offset = -200;
-        }
-        if (video.id === 'video2') {
-          duration = 500;
-          offset = -450;
-        }
-        if (video.id === 'video3') {
-        }
-      }
-
-      initializeScrollMagic(video, video_section, triggerElement, duration, offset, videoHeight);
-    });
-  }
-}
-
-// document.addEventListener('DOMContentLoaded', setupVideos);
-jQuery(function ($) {
-  setupVideos();
-});
-// End all videos animations logic
-
-jQuery(function ($) {
+function videoAnimation1(imagesCount) {
   // responsive breakpoints
   var mqMob = window.matchMedia("(max-width: 768px)");
   var mq = window.matchMedia("(min-width: 767.98px)");
-  
+
   // define images
   var images = [];
   var animationPlaying = false;
   var frameIndex = 1;
-  var frameCount = 420;
+  var frameCount = imagesCount - 1;
   var currentFrame = (index) => `./public/videos/video1/video${index.toString().padStart(3, '0')}.jpg`;
 
   // Preload images
   var preloadImages = () => {
     for (let i = 1; i <= frameCount; i++) {
-      $("<img>").attr("src", currentFrame(i));
       images.push(currentFrame(i));
     }
   };
   preloadImages();
 
   if (mq.matches) {
-    $('.video-sequence-canvas').height(window.outerHeight - 40);
+    $('#videoSequence1 .video-sequence').height(window.outerHeight - 40);
   }
 
   // Update Image Frame
@@ -249,11 +61,11 @@ jQuery(function ($) {
       // .addIndicators({name: 'image sequence'})
       .addTo(controller);
   }
-  
+
   if (mq.matches) {
     // TweenMax can tween any property of any object. We use this object to cycle through the array
     var obj = {curImg: 0};
-    
+
     // create tween
     var tween = TweenMax.to(obj, 0.5,
       {
@@ -267,7 +79,7 @@ jQuery(function ($) {
         },
       }
     );
-    
+
     new ScrollMagic.Scene({
       triggerElement: "#videoSequence1",
       duration: $('#videoSequence1')[0].scrollHeight,
@@ -278,94 +90,135 @@ jQuery(function ($) {
       //.addIndicators({name: 'image sequence'})
       .addTo(controller);
   }
-});
+}
 
-/*jQuery(function ($) {
-  const $canvas = $("#videoSequenceCanvas");
-  const context = $canvas[0].getContext("2d");
+function videoAnimation2(imagesCount) {
+  // responsive breakpoints
+  var mqMob = window.matchMedia("(max-width: 768px)");
+  var mq = window.matchMedia("(min-width: 767.98px)");
 
-  const frameCount = 420;
-  const currentFrame = index =>
-    `./public/videos/video1/video${index.toString().padStart(3, '0')}.jpg`;
+  // define images
+  var images = [];
+  var frameCount = imagesCount - 1;
+  var currentFrame = (index) => `./public/videos/video2/video${index.toString().padStart(3, '0')}.jpg`;
 
   // Preload images
-  const preloadImages = () => {
+  var preloadImages = () => {
     for (let i = 1; i <= frameCount; i++) {
-      $("<img>").attr("src", currentFrame(i));
+      images.push(currentFrame(i));
     }
   };
-
-  // Initialize canvas with first frame
-  const img = new Image();
-  img.src = currentFrame(1);
-
-  $(img).on("load", function () {
-    context.drawImage(img, 0, 0);
-  });
-
-  // Function to update image
-  const updateImage = index => {
-    img.src = currentFrame(index);
-    context.drawImage(img, 0, 0);
-  };
-
-  // Initialize ScrollMagic
-  const $trigger = $("#videoSequence1"); // The element that triggers animation
-
-  const scene = new ScrollMagic.Scene({
-    triggerElement: $trigger[0], // Convert jQuery object to DOM element
-    duration: 10000,
-    triggerHook: 0,
-    offset: 0,
-  })
-    //.setPin($canvas[0]) // Keep canvas fixed during animation
-    .on("progress", function (event) {
-      const frameIndex = Math.min(
-        frameCount - 1,
-        Math.ceil(event.progress * frameCount)
-      );
-      requestAnimationFrame(() => updateImage(frameIndex + 1));
-    })
-    .addTo(controller);
-
   preloadImages();
-});*/
 
-// Video 3 and phone section animations logic
-jQuery(function ($) {
-  var mq = window.matchMedia( "(min-width: 767.98px)" );
-  var mqMob = window.matchMedia( "(max-width: 768px)" );
-  var video = document.getElementById('scroll-video');
-  var lastProgress = 0;
-  var isAnimating = false;
-  var progressvalue;
-
-  // Play video on scroll
   if (mq.matches) {
+    $('#videoSequence2 .video-sequence').height(window.outerHeight - 40);
+  }
+
+  // build scene
+  if (mqMob.matches) {
+    // TweenMax can tween any property of any object. We use this object to cycle through the array
+    var obj = {curImg: 0};
+
+    // create tween
+    var tween = TweenMax.to(obj, 0.5,
+      {
+        curImg: images.length - 1,	// animate propery curImg to number of images
+        roundProps: "curImg",				// only integers so it can be used as an array index
+        repeat: 0,									// repeat 0 times
+        immediateRender: true,			// load first image automatically
+        ease: Linear.easeNone,			// show every image the same ammount of time
+        onUpdate: function () {
+          $("#videoSequence2 img").attr("src", images[obj.curImg]); // set the image source
+        },
+      }
+    );
+
+    new ScrollMagic.Scene({
+      triggerElement: "#videoSequence2",
+      duration: 1000,
+      offset: -800,
+      triggerHook: 0,
+    })
+      .setTween(tween)
+      //.addIndicators({name: 'image sequence'})
+      .addTo(controller);
+  }
+
+  if (mq.matches) {
+    // TweenMax can tween any property of any object. We use this object to cycle through the array
+    var obj = {curImg: 0};
+
+    // create tween
+    var tween = TweenMax.to(obj, 0.5,
+      {
+        curImg: images.length - 1,	// animate propery curImg to number of images
+        roundProps: "curImg",				// only integers so it can be used as an array index
+        repeat: 0,									// repeat 0 times
+        immediateRender: true,			// load first image automatically
+        ease: Linear.easeNone,			// show every image the same ammount of time
+        onUpdate: function () {
+          $("#videoSequence2 img").attr("src", images[obj.curImg]); // set the image source
+        },
+      }
+    );
+
+    new ScrollMagic.Scene({
+      triggerElement: "#videoSequence2",
+      duration: 1000,
+      offset: -500,
+      triggerHook: 0,
+    })
+      .setTween(tween)
+      //.addIndicators({name: 'image sequence'})
+      .addTo(controller);
+  }
+}
+
+function videoAnimation3(imagesCount) {
+  // responsive breakpoints
+  var mqMob = window.matchMedia("(max-width: 768px)");
+  var mq = window.matchMedia("(min-width: 767.98px)");
+
+  // define images
+  var images = [];
+  var frameCount = imagesCount - 1;
+  var currentFrame = (index) => `./public/videos/video3/video${index.toString().padStart(3, '0')}.jpg`;
+
+  // Preload images
+  var preloadImages = () => {
+    for (let i = 1; i <= frameCount; i++) {
+      images.push(currentFrame(i));
+    }
+  };
+  preloadImages();
+
+  // build scene
+  if (mq.matches) {
+    // TweenMax can tween any property of any object. We use this object to cycle through the array
+    var obj = {curImg: 0};
+
+    // create tween
+    var tween = TweenMax.to(obj, 0.5,
+      {
+        curImg: images.length - 1,	// animate propery curImg to number of images
+        roundProps: "curImg",				// only integers so it can be used as an array index
+        repeat: 0,									// repeat 0 times
+        immediateRender: true,			// load first image automatically
+        ease: Linear.easeNone,			// show every image the same ammount of time
+        onUpdate: function () {
+          $("#videoSequence3 .video-section__video-img").attr("src", images[obj.curImg]); // set the image source
+        },
+      }
+    );
+
     new ScrollMagic.Scene({
       triggerElement: '.video-section',
       duration: 970,
       triggerHook: 0,
     })
-      .on('progress', function(event) {
-        // console.log(video.duration, video.currentTime);
-        // video.currentTime = video.duration * event.progress;
-        
-        /*lastProgress = event.progress;
-        if (!isAnimating) {
-          isAnimating = true;
-          requestAnimationFrame(updateVideoTime);
-        }*/
-        progressvalue = Math.floor(100 * event.progress);
-        video.currentTime = video.duration * progressvalue / 100;
-      })
-      // .addIndicators({name: "play"})
+      .setTween(tween)
+      //.addIndicators({name: 'image sequence'})
       .addTo(controller);
-  }
-
-  function updateVideoTime() {
-    video.currentTime = video.duration * lastProgress;
-    isAnimating = false;
   }
 
   // Shrink and move video
@@ -379,7 +232,7 @@ jQuery(function ($) {
       borderRadius: 8,
       ease: 'power1.inOut'
     });
-    
+
     new ScrollMagic.Scene({
       triggerElement: '.video-section',
       triggerHook: 0,
@@ -400,7 +253,7 @@ jQuery(function ($) {
       borderRadius: 4,
       ease: 'power1.inOut'
     });
-    
+
     new ScrollMagic.Scene({
       triggerElement: '.video-section',
       triggerHook: 0,
@@ -521,8 +374,159 @@ jQuery(function ($) {
       // .addIndicators({name: "phone"})
       .addTo(controller);
   }
+}
+
+function videoAnimation4(imagesCount, imagesCountMob) {
+  // responsive breakpoints
+  var mqMob = window.matchMedia("(max-width: 768px)");
+  var mq = window.matchMedia("(min-width: 767.98px)");
+
+  // define images
+  var images = [];
+  var frameCount = mq.matches ? imagesCount - 1 : imagesCountMob - 1;
+  var currentFrame = (index) => `./public/videos/video4/video${index.toString().padStart(3, '0')}.jpg`;
+  if (mqMob.matches) {
+    currentFrame = (index) => `./public/videos/video4_mob/video${index.toString().padStart(3, '0')}.jpg`;
+  }
+
+  // Preload images
+  var preloadImages = () => {
+    for (let i = 1; i <= frameCount; i++) {
+      images.push(currentFrame(i));
+    }
+  };
+  preloadImages();
+
+  // build scene
+  if (mq.matches) {
+    // TweenMax can tween any property of any object. We use this object to cycle through the array
+    var obj = {curImg: 0};
+
+    // create tween
+    var tween = TweenMax.to(obj, 0.5,
+      {
+        curImg: images.length - 1,	// animate propery curImg to number of images
+        roundProps: "curImg",				// only integers so it can be used as an array index
+        repeat: 0,									// repeat 0 times
+        immediateRender: true,			// load first image automatically
+        ease: Linear.easeNone,			// show every image the same ammount of time
+        onUpdate: function () {
+          $("#videoSequence4 .video-sequence img").attr("src", images[obj.curImg]); // set the image source
+        },
+      }
+    );
+
+    new ScrollMagic.Scene({
+      triggerElement: "#videoSequence4",
+      duration: 900,
+      offset: 0,
+      triggerHook: 0,
+    })
+      .setTween(tween)
+      //.addIndicators({name: 'image sequence'})
+      .addTo(controller);
+  }
+
+  if (mqMob.matches) {
+    // TweenMax can tween any property of any object. We use this object to cycle through the array
+    var obj = {curImg: 0};
+
+    // create tween
+    var tween = TweenMax.to(obj, 0.5,
+      {
+        curImg: images.length - 1,  // animate propery curImg to number of images
+        roundProps: "curImg",				// only integers so it can be used as an array index
+        repeat: 0,									// repeat 0 times
+        immediateRender: true,			// load first image automatically
+        ease: Linear.easeNone,			// show every image the same ammount of time
+        onUpdate: function () {
+          $("#videoSequence4 .video-sequence img").attr("src", images[obj.curImg]); // set the image source
+        },
+      }
+    );
+
+    new ScrollMagic.Scene({
+      triggerElement: "#videoSequence4",
+      duration: 900,
+      offset: -300,
+      triggerHook: 0,
+    })
+      .setTween(tween)
+      //.addIndicators({name: 'image sequence'})
+      .addTo(controller);
+  }
+}
+
+jQuery(function ($) {
+  let loadedImages = 0;
+  let totalImages = 0;
+  let videoImages1 = 0;
+  let videoImages2 = 0;
+  let videoImages3 = 0;
+  let videoImages4 = 0;
+  let videoImages4_mob = 0;
+
+  function updateProgress() {
+    let percent = Math.floor((loadedImages / totalImages) * 100);
+    $(".progress-bar").css("width", percent + "%");
+    $("#progress-text").text(percent + "%");
+
+    if (loadedImages === totalImages) {
+      $("#preloader").fadeOut(500, function () {
+        $("#scrollContainer").css("visibility", "visible");
+        videoAnimation1(videoImages1);
+        videoAnimation2(videoImages2);
+        videoAnimation3(videoImages3);
+        videoAnimation4(videoImages4, videoImages4_mob);
+      });
+    }
+  }
+
+  function isImageCached(src) {
+    let img = new Image();
+    img.src = src;
+    
+    return img.complete && img.naturalHeight !== 0; // Cached if true
+  }
+
+  function preloadImages(folders) {
+    totalImages = folders.totalImages;
+    videoImages1 = folders.imagesPerFolder.folder1;
+    videoImages2 = folders.imagesPerFolder.folder2;
+    videoImages3 = folders.imagesPerFolder.folder3;
+    videoImages4 = folders.imagesPerFolder.folder4;
+    videoImages4_mob = folders.imagesPerFolder.folder5;
+    let folderPaths = ["video1", "video2", "video3", "video4", "video4_mob"];
+
+    folderPaths.forEach((folder, index) => {
+      let count = folders.imagesPerFolder[`folder${index + 1}`] || 0;
+
+      for (let i = 0; i <= count - 1; i++) {
+        let imgPath = `./public/videos/${folder}/video${String(i).padStart(3, '0')}.jpg`;
+
+        if (isImageCached(imgPath)) {
+          loadedImages++;
+          updateProgress();
+        } else {
+          let img = new Image();
+          img.src = imgPath;
+
+          img.onload = img.onerror = function () {
+            loadedImages++;
+            updateProgress();
+          };
+        }
+      }
+    });
+  }
+
+  // Fetch totalImages from config.json
+  $.getJSON('./public/config.json', function (data) {
+    preloadImages(data);
+  }).fail(function () {
+    console.error("Failed to load config.json");
+  });
 });
-// End Video 3 and phone section animations logic
 
 // Other animations logic
 jQuery(function ($) {
@@ -587,6 +591,36 @@ jQuery(function ($) {
     $.cookie('cookiesAccepted', 'false', { expires: 365, path: '/' });
     $('#cookie-banner').fadeOut(300);
     $('.cookie-banner__overflow').fadeOut(300);
+  });
+  
+});
+
+jQuery(function ($) {
+  
+  $('.faq__question').on('click', function(e) {
+    e.preventDefault();
+    if ($(this).parent().hasClass('is-open')) {
+      $(this).parent().removeClass('is-open');
+      $(this).next().slideUp({
+        duration: 500,
+        start: function() {
+          $(this).find('.faq__answer-wrapper').css('opacity', '0');
+        }
+      });
+    } else {
+      $(this).parent().addClass('is-open');
+      $(this).next().slideDown({
+        duration: 500,
+        // complete: function() {
+        //   $(this).find('.faq__answer-wrapper').css('opacity', '1');
+        // },
+        progress: function(animation, progress, remainingMs) {
+          if (remainingMs < 100) {
+            $(this).find('.faq__answer-wrapper').css('opacity', '1');
+          }
+        }
+      });
+    }
   });
   
 });
@@ -677,36 +711,6 @@ jQuery(function ($) {
   
 });
 
-jQuery(function ($) {
-  
-  $('.faq__question').on('click', function(e) {
-    e.preventDefault();
-    if ($(this).parent().hasClass('is-open')) {
-      $(this).parent().removeClass('is-open');
-      $(this).next().slideUp({
-        duration: 500,
-        start: function() {
-          $(this).find('.faq__answer-wrapper').css('opacity', '0');
-        }
-      });
-    } else {
-      $(this).parent().addClass('is-open');
-      $(this).next().slideDown({
-        duration: 500,
-        // complete: function() {
-        //   $(this).find('.faq__answer-wrapper').css('opacity', '1');
-        // },
-        progress: function(animation, progress, remainingMs) {
-          if (remainingMs < 100) {
-            $(this).find('.faq__answer-wrapper').css('opacity', '1');
-          }
-        }
-      });
-    }
-  });
-  
-});
-
 $('.scrollContainer').on('scroll load', function () {
   if ($(this).scrollTop() > 0) {
     $('.header').addClass('is-sticky');
@@ -757,6 +761,10 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
+  
+});
+
+jQuery(function ($) {
   var mqMob = window.matchMedia("(max-width: 768px)");
   
   function toggleMenu() {
@@ -779,25 +787,6 @@ jQuery(function ($) {
     e.preventDefault();
     toggleMenu();
   });
-});
-
-jQuery(function ($) {
-  
-});
-
-
-var scrollContainer = document.getElementById('scrollContainer');
-
-document.addEventListener("DOMContentLoaded", function(event) {
-  var scrollpos = sessionStorage.getItem('scrollpos');
-  if (scrollpos) {
-    scrollContainer.scrollTo(0, scrollpos);
-    sessionStorage.removeItem('scrollpos');
-  }
-});
-
-window.addEventListener("beforeunload", function (e) {
-  sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
 });
 
 jQuery(function ($) {
@@ -824,3 +813,18 @@ jQuery(function ($) {
     }, 500);
   });
 });
+
+var scrollContainer = document.getElementById('scrollContainer');
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  var scrollpos = sessionStorage.getItem('scrollpos');
+  if (scrollpos) {
+    scrollContainer.scrollTo(0, scrollpos);
+    sessionStorage.removeItem('scrollpos');
+  }
+});
+
+window.addEventListener("beforeunload", function (e) {
+  sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
+});
+
