@@ -459,6 +459,7 @@ function videoAnimation4(imagesCount, imagesCountMob) {
 
 jQuery(function ($) {
   let loadedImages = 0;
+  let loadedImagesLazy = 0;
   let totalImages = 0;
   let videoImages1 = 0;
   let videoImages2 = 0;
@@ -467,18 +468,24 @@ jQuery(function ($) {
   let videoImages4_mob = 0;
 
   function updateProgress() {
-    let percent = Math.floor((loadedImages / totalImages) * 100);
+    let percent = Math.floor((loadedImages / videoImages1) * 100);
     $(".progress-bar").css("width", percent + "%");
     $("#progress-text").text(percent + "%");
 
-    if (loadedImages === totalImages) {
+    if (loadedImages === videoImages1) {
       $("#preloader").fadeOut(500, function () {
         $("#scrollContainer").css("visibility", "visible");
         videoAnimation1(videoImages1);
-        videoAnimation2(videoImages2);
-        videoAnimation3(videoImages3);
-        videoAnimation4(videoImages4, videoImages4_mob);
       });
+    }
+  }
+  
+  function updateProgressLazy() {
+    // console.log(loadedImagesLazy, totalImages)
+    if (loadedImagesLazy === totalImages) {
+      videoAnimation2(videoImages2);
+      videoAnimation3(videoImages3);
+      videoAnimation4(videoImages4, videoImages4_mob);
     }
   }
 
@@ -490,13 +497,8 @@ jQuery(function ($) {
   }
 
   function preloadImages(folders) {
-    totalImages = folders.totalImages;
     videoImages1 = folders.imagesPerFolder.folder1;
-    videoImages2 = folders.imagesPerFolder.folder2;
-    videoImages3 = folders.imagesPerFolder.folder3;
-    videoImages4 = folders.imagesPerFolder.folder4;
-    videoImages4_mob = folders.imagesPerFolder.folder5;
-    let folderPaths = ["video1", "video2", "video3", "video4", "video4_mob"];
+    let folderPaths = ["video1"];
 
     folderPaths.forEach((folder, index) => {
       let count = folders.imagesPerFolder[`folder${index + 1}`] || 0;
@@ -520,9 +522,41 @@ jQuery(function ($) {
     });
   }
 
+  function preloadImagesLazy(folders) {
+    totalImages = folders.totalImages - folders.imagesPerFolder.folder1;
+    videoImages2 = folders.imagesPerFolder.folder2;
+    videoImages3 = folders.imagesPerFolder.folder3;
+    videoImages4 = folders.imagesPerFolder.folder4;
+    videoImages4_mob = folders.imagesPerFolder.folder5;
+    let folderPaths = ["video2", "video3", "video4", "video4_mob"];
+
+    folderPaths.forEach((folder, index) => {
+      // console.log(`folder${index + 2}`);
+      let count = folders.imagesPerFolder[`folder${index + 2}`] || 0;
+
+      for (let i = 0; i <= count - 1; i++) {
+        let imgPath = `./public/videos/${folder}/video${String(i).padStart(3, '0')}.jpg`;
+
+        if (isImageCached(imgPath)) {
+          loadedImagesLazy++;
+          updateProgressLazy();
+        } else {
+          let img = new Image();
+          img.src = imgPath;
+
+          img.onload = img.onerror = function () {
+            loadedImagesLazy++;
+            updateProgressLazy();
+          };
+        }
+      }
+    });
+  }
+
   // Fetch totalImages from config.json
   $.getJSON('./public/config.json', function (data) {
     preloadImages(data);
+    preloadImagesLazy(data);
   }).fail(function () {
     console.error("Failed to load config.json");
   });
