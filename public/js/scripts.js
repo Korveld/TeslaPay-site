@@ -467,7 +467,7 @@ jQuery(function ($) {
   let videoImages4 = 0;
   let videoImages4_mob = 0;
 
-  function updateProgress() {
+  function updateProgress(data) {
     let percent = Math.floor((loadedImages / videoImages1) * 100);
     $(".progress-bar").css("width", percent + "%");
     $("#progress-text").text(percent + "%");
@@ -476,6 +476,7 @@ jQuery(function ($) {
       $("#preloader").fadeOut(500, function () {
         $("#scrollContainer").css("visibility", "visible");
         videoAnimation1(videoImages1);
+        preloadImagesLazy(data);
       });
     }
   }
@@ -508,14 +509,14 @@ jQuery(function ($) {
 
         if (isImageCached(imgPath)) {
           loadedImages++;
-          updateProgress();
+          updateProgress(folders);
         } else {
           let img = new Image();
           img.src = imgPath;
 
           img.onload = img.onerror = function () {
             loadedImages++;
-            updateProgress();
+            updateProgress(folders);
           };
         }
       }
@@ -523,6 +524,7 @@ jQuery(function ($) {
   }
 
   function preloadImagesLazy(folders) {
+    // console.log('preloadImagesLazy');
     totalImages = folders.totalImages - folders.imagesPerFolder.folder1;
     videoImages2 = folders.imagesPerFolder.folder2;
     videoImages3 = folders.imagesPerFolder.folder3;
@@ -556,7 +558,6 @@ jQuery(function ($) {
   // Fetch totalImages from config.json
   $.getJSON('./public/config.json', function (data) {
     preloadImages(data);
-    preloadImagesLazy(data);
   }).fail(function () {
     console.error("Failed to load config.json");
   });
@@ -745,14 +746,6 @@ jQuery(function ($) {
   
 });
 
-$('.scrollContainer').on('scroll load', function () {
-  if ($(this).scrollTop() > 0) {
-    $('.header').addClass('is-sticky');
-  } else {
-    $('.header').removeClass('is-sticky');
-  }
-});
-
 jQuery(function ($) {
 
   var mq = window.matchMedia( "(min-width: 767.98px)" );
@@ -792,9 +785,6 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
-});
-
-jQuery(function ($) {
   
 });
 
@@ -823,13 +813,15 @@ jQuery(function ($) {
   });
 });
 
-jQuery(function ($) {
-  var mq = window.matchMedia("(min-width: 767.98px)");
-  if (mq.matches) {
-    if ($('.js-plan-text').length) {
-      $('.js-plan-text').equalHeights()
-    }
+$('.scrollContainer').on('scroll load', function () {
+  if ($(this).scrollTop() > 0) {
+    $('.header').addClass('is-sticky');
+  } else {
+    $('.header').removeClass('is-sticky');
   }
+});
+
+jQuery(function ($) {
 });
 
 jQuery(function ($) {
@@ -846,6 +838,15 @@ jQuery(function ($) {
       scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
     }, 500);
   });
+});
+
+jQuery(function ($) {
+  var mq = window.matchMedia("(min-width: 767.98px)");
+  if (mq.matches) {
+    if ($('.js-plan-text').length) {
+      $('.js-plan-text').equalHeights()
+    }
+  }
 });
 
 var scrollContainer = document.getElementById('scrollContainer');
