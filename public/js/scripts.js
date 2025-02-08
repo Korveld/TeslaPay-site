@@ -1,5 +1,37 @@
 var controller = new ScrollMagic.Controller();
 
+jQuery(function ($) {
+  var mq = window.matchMedia( "(min-width: 767.98px)" );
+  var mqMob = window.matchMedia( "(max-width: 768px)" );
+
+  if (mq.matches) {
+    var animate_icon_1 = new ScrollMagic.Scene({
+      triggerElement: "#trigger_animate_icon_1",
+      duration: 400
+    })
+      .setTween("#animate_icon_1", { scale: 1 })
+      .addTo(controller);
+    var animate_icon_2 = new ScrollMagic.Scene({
+      triggerElement: "#trigger_animate_icon_2",
+      duration: 400,
+      offset: 0
+    })
+      .setTween("#animate_icon_2", { rotation: 0 })
+      .addTo(controller);
+
+    var card_offset = 45;
+    $('.js-animate-card').each(function(index, node) {
+      new ScrollMagic.Scene({
+        triggerElement: "#trigger_animate_icon_3",
+        duration: 400,
+        offset: 0
+      })
+        .setTween(node, { x: card_offset * (index + 1) })
+        .addTo(controller);
+    });
+  }
+});
+
 function videoAnimation1(imagesCount) {
   // responsive breakpoints
   var mqMob = window.matchMedia("(max-width: 768px)");
@@ -563,73 +595,6 @@ jQuery(function ($) {
   });
 });
 
-// Other animations logic
-jQuery(function ($) {
-  var mq = window.matchMedia( "(min-width: 767.98px)" );
-  var mqMob = window.matchMedia( "(max-width: 768px)" );
-
-  if (mq.matches) {
-    var animate_icon_1 = new ScrollMagic.Scene({
-      triggerElement: "#trigger_animate_icon_1",
-      duration: 400
-    })
-      .setTween("#animate_icon_1", { scale: 1 })
-      .addTo(controller);
-    var animate_icon_2 = new ScrollMagic.Scene({
-      triggerElement: "#trigger_animate_icon_2",
-      duration: 400,
-      offset: 0
-    })
-      .setTween("#animate_icon_2", { rotation: 0 })
-      .addTo(controller);
-
-    var card_offset = 45;
-    $('.js-animate-card').each(function(index, node) {
-      new ScrollMagic.Scene({
-        triggerElement: "#trigger_animate_icon_3",
-        duration: 400,
-        offset: 0
-      })
-        .setTween(node, { x: card_offset * (index + 1) })
-        .addTo(controller);
-    }); 
-  }
-});
-
-jQuery(function ($) {
-
-  if (!$.cookie('cookiesAccepted')) {
-    $('#cookie-banner').show();
-    $('.cookie-banner__overflow').show();
-  }
-  
-  $('.cookie-banner__close').on('click', function (e) {
-    e.preventDefault();
-    $('#cookie-banner').fadeOut(300);
-  });
-  
-  $('.cookie-banner__overflow').on('click', function (e) {
-    e.preventDefault();
-    $('#cookie-banner').fadeOut(300);
-    $(this).fadeOut(300);
-  });
-
-  $('#accept-cookies').on('click', function (e) {
-    e.preventDefault();
-    $.cookie('cookiesAccepted', 'true', { expires: 365, path: '/' });
-    $('#cookie-banner').fadeOut(300);
-    $('.cookie-banner__overflow').fadeOut(300);
-  });
-
-  $('#reject-cookies').on('click', function (e) {
-    e.preventDefault();
-    $.cookie('cookiesAccepted', 'false', { expires: 365, path: '/' });
-    $('#cookie-banner').fadeOut(300);
-    $('.cookie-banner__overflow').fadeOut(300);
-  });
-  
-});
-
 jQuery(function ($) {
   
   $('.faq__question').on('click', function(e) {
@@ -784,6 +749,51 @@ jQuery(function ($) {
   
 });
 
+$('.scrollContainer').on('scroll load', function () {
+  if ($(this).scrollTop() > 0) {
+    $('.header').addClass('is-sticky');
+  } else {
+    $('.header').removeClass('is-sticky');
+  }
+});
+
+jQuery(function ($) {
+});
+
+jQuery(function ($) {
+
+  if (!$.cookie('cookiesAccepted')) {
+    $('#cookie-banner').show();
+    $('.cookie-banner__overflow').show();
+  }
+  
+  $('.cookie-banner__close').on('click', function (e) {
+    e.preventDefault();
+    $('#cookie-banner').fadeOut(300);
+  });
+  
+  $('.cookie-banner__overflow').on('click', function (e) {
+    e.preventDefault();
+    $('#cookie-banner').fadeOut(300);
+    $(this).fadeOut(300);
+  });
+
+  $('#accept-cookies').on('click', function (e) {
+    e.preventDefault();
+    $.cookie('cookiesAccepted', 'true', { expires: 365, path: '/' });
+    $('#cookie-banner').fadeOut(300);
+    $('.cookie-banner__overflow').fadeOut(300);
+  });
+
+  $('#reject-cookies').on('click', function (e) {
+    e.preventDefault();
+    $.cookie('cookiesAccepted', 'false', { expires: 365, path: '/' });
+    $('#cookie-banner').fadeOut(300);
+    $('.cookie-banner__overflow').fadeOut(300);
+  });
+  
+});
+
 jQuery(function ($) {
   
 });
@@ -813,15 +823,13 @@ jQuery(function ($) {
   });
 });
 
-$('.scrollContainer').on('scroll load', function () {
-  if ($(this).scrollTop() > 0) {
-    $('.header').addClass('is-sticky');
-  } else {
-    $('.header').removeClass('is-sticky');
-  }
-});
-
 jQuery(function ($) {
+  var mq = window.matchMedia("(min-width: 767.98px)");
+  if (mq.matches) {
+    if ($('.js-plan-text').length) {
+      $('.js-plan-text').equalHeights()
+    }
+  }
 });
 
 jQuery(function ($) {
@@ -838,15 +846,6 @@ jQuery(function ($) {
       scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
     }, 500);
   });
-});
-
-jQuery(function ($) {
-  var mq = window.matchMedia("(min-width: 767.98px)");
-  if (mq.matches) {
-    if ($('.js-plan-text').length) {
-      $('.js-plan-text').equalHeights()
-    }
-  }
 });
 
 var scrollContainer = document.getElementById('scrollContainer');
