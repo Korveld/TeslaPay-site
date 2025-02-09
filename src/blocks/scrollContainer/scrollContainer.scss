@@ -1,0 +1,7 @@
+.scrollContainer {
+  visibility: hidden;
+
+  @media only screen and (max-width: theme('screens.mdMax.max')) {
+    visibility: visible !important;
+  }
+}

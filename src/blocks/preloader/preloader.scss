@@ -9,6 +9,10 @@
   align-items: center;
   background: #111;
 
+  @media only screen and (max-width: theme('screens.mdMax.max')) {
+    display: none !important;
+  }
+
   .progress-container {
     overflow: hidden;
     width: 60%;
