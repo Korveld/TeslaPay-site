@@ -11,11 +11,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="./public/css/style.css?v=1.1.8">
+  <link rel="stylesheet" href="./public/css/style.css?v=1.1.9">
 </head>
 <body>
 
-<div class="scrollContainer" id="scrollContainer">
+<div class="scrollContainer" id="scrollContainer" style="visibility: visible;">
   <header class="header">
     <div class="header__box">
       <div class="header__box-container">
@@ -23,8 +23,8 @@
           <img src="./public/img/Logo.svg" alt="">
         </a>
 
-        <button type="button" class="menu-burger"></button>
-        <ul class="menu">
+        <button type="button" class="menu-burger" style="display: none !important;"></button>
+        <ul class="menu" style="display: none !important;">
           <li>
             <a href="./">Home</a>
           </li>
@@ -136,7 +136,7 @@
             <button class="btn btn-outline-primary">Button</button>
             <button class="btn btn-outline-secondary">Button</button>
           </div>
-          <div class="flex gap-8">
+          <div class="flex gap-8 mdMax:flex-col">
             <p class="p--md2">TeslaPay utilizes specific cookies and similar technologies (collectively referred to as ‘Cookies’) to ensure that our services are delivered to you in a reliable and secure manner. </p>
             <p class="p--md2">TeslaPay utilizes specific cookies and similar technologies (collectively referred to as ‘Cookies’) to ensure that our services are delivered to you in a reliable and secure manner. </p>
           </div>
@@ -144,9 +144,116 @@
       </div>
     </section>
   </main>
+
+  <footer class="footer">
+    <div class="container mdMax:px-[48px]">
+      <div class="footer__nav-grid">
+        <ul class="footer__nav">
+          <li>
+            <a href="./">Home</a>
+          </li>
+          <li>
+            <a href="./#products">Products</a>
+          </li>
+          <li>
+            <a href="./#security">Security</a>
+          </li>
+          <li>
+            <a href="./#plans">Plans</a>
+          </li>
+          <li>
+            <a href="#">Support</a>
+          </li>
+          <li>
+            <a href="./#faq">FAQ</a>
+          </li>
+        </ul>
+        <ul class="footer__nav">
+          <li>
+            <a href="#">Privacy Policy</a>
+          </li>
+          <li>
+            <a href="#">Terms of use</a>
+          </li>
+          <li>
+            <a href="#">Cookie Policy</a>
+          </li>
+          <li>
+            <a href="#">Risks</a>
+          </li>
+          <li>
+            <a href="#">Data Requests</a>
+          </li>
+          <li>
+            <a href="#">Imprint</a>
+          </li>
+        </ul>
+        <div class="footer__apps">
+          <a href="#">
+            <picture>
+              <source
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="./public/img/footer-app-store.webp"
+                type="image/webp" />
+              <img
+                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-src="./public/img/footer-app-store.png"
+                class="lazyload pointer-events-none select-none"
+                alt="" />
+            </picture>
+          </a>
+          <a href="#">
+            <picture>
+              <source
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="./public/img/footer-google-app.webp"
+                type="image/webp" />
+              <img
+                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-src="./public/img/footer-google-app.png"
+                class="lazyload pointer-events-none select-none"
+                alt="" />
+            </picture>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__copyright">
+        <p class="mb-[36px]">&copy; TeslaPay 2025</p>
+        <div class="footer__copyright-text">
+          <p>If you would like to find out more about which Revolut entity you receive services from, or have any other questions, please reach out to us via the in-app chat in the Revolut app.</p>
+          <p>Revolut Ltd is registered in England and Wales (No. 08804411), is authorised by the Financial Conduct Authority to offer e-money and payment services under the Electronic Money Regulations 2011 (FRN: 900562), and is registered with the Financial Conduct Authority to offer cryptocurrency services under the Money Laundering, Terrorist Financing and Transfer of Funds (Information on the Payer) Regulations 2017. Commodities services are provided by Revolut Ltd and are not regulated by the Financial Conduct Authority.</p>
+          <p>Revolut Travel Ltd (No. 10618740) is authorised by the Financial Conduct Authority to undertake insurance distribution activities (FRN: 780586). Our insurance products are arranged by Revolut Travel Ltd and Revolut Ltd, an appointed representative of Revolut Travel Ltd.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cookie-banner__overflow"></div>
+  <div class="cookie-banner" id="cookie-banner">
+    <button type="button" class="cookie-banner__close"></button>
+    <div class="cookie-banner__title">Cookie Policy</div>
+    <div class="cookie-banner__text">
+      <p class="mb-6">TeslaPay utilizes specific cookies and similar technologies (collectively referred to as ‘Cookies’) to ensure that our services are delivered to you in a reliable and secure manner. These Cookies are automatically set when you visit our websites and do not require your approval. With your permission, we and our partners may employ additional Cookies to enhance the performance of our websites, create a personalized banking experience, and provide you with more relevant content and advertisements online. To achieve this, we gather information regarding your devices, your behavior on our websites, and your interactions with our advertisements.</p>
+      <p>By selecting “Accept all,” you agree to our use of these additional Cookies and consent to the sharing of the collected information with our partners, some of whom may be located outside the EU, including the USA. According to EU Regulation 2016/679 (‘GDPR’), the USA does not offer an adequate level of protection for personal data. If you choose ‘Reject all’ or click the ‘X’ button in the top right corner of this banner, the default settings will remain unchanged. To manage your consent preferences individually, please select “Cookie preferences.” You can withdraw your consent at any time. For further details, please refer to our cookie policy.</p>
+      <img src="./public/img/cookies-blur.png" alt="" class="cookie-banner__text-blur">
+    </div>
+    <div class="cookie-banner__btns">
+      <button
+        type="button"
+        class="cookie-banner__btn cookie-banner__btn--reject"
+        id="reject-cookies"
+      >Reject All</button>
+      <button
+        type="button"
+        class="cookie-banner__btn cookie-banner__btn--accept"
+        id="accept-cookies"
+      >Accept All</button>
+    </div>
+  </div>
 </div>
 
 <script src="./public/js/vendor-min.js?v=1.1.2"></script>
-<script src="./public/js/scripts-min.js?v=1.1.8"></script>
+<script src="./public/js/scripts-min.js?v=1.1.9"></script>
 </body>
 </html>
