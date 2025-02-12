@@ -429,7 +429,7 @@ function videoAnimation4(imagesCount) {
   // define images
   var images = [];
   var frameCount = imagesCount - 1;
-  var currentFrame = (index) => `./public/videos/video4/video${index.toString().padStart(3, '0')}.jpg`;
+  var currentFrame = (index) => `./public/videos/video4/video${index.toString().padStart(3, '0')}.png`;
 
   // Preload images
   var preloadImages = () => {
@@ -474,7 +474,7 @@ function videoAnimation4_mob(imagesCount) {
   // define images
   var images = [];
   var frameCount = imagesCount - 1;
-  var currentFrame = (index) => `./public/videos/video4_mob/video${index.toString().padStart(3, '0')}.jpg`;
+  var currentFrame = (index) => `./public/videos/video4_mob/video${index.toString().padStart(3, '0')}.png`;
 
   // Preload images
   var preloadImages = () => {
@@ -527,7 +527,7 @@ jQuery(function ($) {
 
   function updateProgress(data) {
     let percent = Math.floor((loadedImages / videoImages1) * 100);
-    $(".progress-bar").css("width", percent + "%");
+    // $(".progress-bar").css("width", percent + "%");
     $("#progress-text").text(percent + "%");
 
     if (loadedImages === videoImages1) {
