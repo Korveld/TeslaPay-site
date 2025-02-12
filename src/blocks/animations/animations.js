@@ -601,6 +601,9 @@ jQuery(function ($) {
 
       for (let i = 0; i <= count - 1; i++) {
         let imgPath = `./public/videos/${folder}/video${String(i).padStart(3, '0')}.jpg`;
+        if (folder === 'video4' || folder === 'video4_mob') {
+          imgPath = `./public/videos/${folder}/video${String(i).padStart(3, '0')}.png`;
+        }
 
         if (isImageCached(imgPath)) {
           loadedImagesLazy++;
@@ -635,6 +638,9 @@ jQuery(function ($) {
 
       for (let i = 0; i <= count - 1; i++) {
         let imgPath = `./public/videos/${folder}/video${String(i).padStart(3, '0')}.jpg`;
+        if (folder === 'video4' || folder === 'video4_mob') {
+          imgPath = `./public/videos/${folder}/video${String(i).padStart(3, '0')}.png`;
+        }
 
         if (isImageCached(imgPath)) {
           loadedImagesLazy++;
