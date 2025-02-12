@@ -429,7 +429,7 @@ function videoAnimation4(imagesCount) {
   // define images
   var images = [];
   var frameCount = imagesCount - 1;
-  var currentFrame = (index) => `./public/videos/video4/video${index.toString().padStart(3, '0')}.png`;
+  var currentFrame = (index) => `./public/videos/video4/video${index.toString().padStart(3, '0')}.jpg`;
 
   // Preload images
   var preloadImages = () => {
@@ -474,7 +474,7 @@ function videoAnimation4_mob(imagesCount) {
   // define images
   var images = [];
   var frameCount = imagesCount - 1;
-  var currentFrame = (index) => `./public/videos/video4_mob/video${index.toString().padStart(3, '0')}.png`;
+  var currentFrame = (index) => `./public/videos/video4_mob/video${index.toString().padStart(3, '0')}.jpg`;
 
   // Preload images
   var preloadImages = () => {
@@ -601,9 +601,6 @@ jQuery(function ($) {
 
       for (let i = 0; i <= count - 1; i++) {
         let imgPath = `./public/videos/${folder}/video${String(i).padStart(3, '0')}.jpg`;
-        if (folder === 'video4' || folder === 'video4_mob') {
-          imgPath = `./public/videos/${folder}/video${String(i).padStart(3, '0')}.png`;
-        }
 
         if (isImageCached(imgPath)) {
           loadedImagesLazy++;
@@ -638,9 +635,6 @@ jQuery(function ($) {
 
       for (let i = 0; i <= count - 1; i++) {
         let imgPath = `./public/videos/${folder}/video${String(i).padStart(3, '0')}.jpg`;
-        if (folder === 'video4' || folder === 'video4_mob') {
-          imgPath = `./public/videos/${folder}/video${String(i).padStart(3, '0')}.png`;
-        }
 
         if (isImageCached(imgPath)) {
           loadedImagesLazy++;
