@@ -867,10 +867,6 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
-  
-});
-
-jQuery(function ($) {
   var mqMob = window.matchMedia("(max-width: 768px)");
   
   function toggleMenu() {
@@ -893,6 +889,10 @@ jQuery(function ($) {
     e.preventDefault();
     toggleMenu();
   });
+});
+
+jQuery(function ($) {
+  
 });
 
 jQuery(function ($) {
