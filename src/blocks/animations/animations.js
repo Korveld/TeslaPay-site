@@ -7,6 +7,7 @@ function shrinkVideoAnimation() {
   if (mq.matches) {
     var shrinkTween = gsap.to('.video-section__video', {
       y: '-86',
+      x: '-50%',
       // scale: 0.16,
       width: 226,
       height: 142,
@@ -29,6 +30,7 @@ function shrinkVideoAnimation() {
   } else {
     var shrinkTween = gsap.to('.video-section__video', {
       y: '2',
+      // x: '-50%',
       width: 112,
       height: 72,
       duration: 1,
