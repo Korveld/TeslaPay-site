@@ -1,3 +1,4 @@
+/*
 var scrollContainer = document.getElementById('scrollContainer');
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -11,3 +12,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
 window.addEventListener("beforeunload", function (e) {
   sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
 });
+*/

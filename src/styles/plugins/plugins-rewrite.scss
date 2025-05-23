@@ -141,6 +141,22 @@
   }
 }
 
+.btn-gradient-primary {
+  padding: 2px 24px;
+  display: inline-flex;
+  width: 100%;
+  min-height: 39px;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 500;
+  text-decoration: none;
+  color: theme('colors.dark');
+  background: linear-gradient(270deg, rgb(209, 201, 178) 33.905%, rgb(148, 117, 55) 92.241%);
+  border-radius: 50px;
+}
+
 .btn-link {
 
   &:hover {

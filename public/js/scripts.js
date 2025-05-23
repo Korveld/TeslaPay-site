@@ -670,6 +670,33 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
+  $('#contactForm').validate({
+    errorElement: 'span',
+    // errorClass: 'not-valid-tip',
+    rules: {
+      name: {
+        required: true,
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      term1: {
+        required: true,
+      },
+    },
+    messages: {
+    },
+    errorPlacement: function(error, element) {
+      element.parents('.js-field-wrapper').append(error)
+    },
+    submitHandler: function(form) {
+      $(form)[0].submit();
+    }
+  });
+});
+
+jQuery(function ($) {
 
   if (!$.cookie('cookiesAccepted')) {
     $('#cookie-banner').show();
@@ -731,6 +758,14 @@ jQuery(function ($) {
     }
   });
   
+});
+
+$('.scrollContainer').on('scroll load', function () {
+  if ($(this).scrollTop() > 0) {
+    $('.header').addClass('is-sticky');
+  } else {
+    $('.header').removeClass('is-sticky');
+  }
 });
 
 jQuery(function ($) {
@@ -857,15 +892,11 @@ jQuery(function ($) {
   
 });
 
-$('.scrollContainer').on('scroll load', function () {
-  if ($(this).scrollTop() > 0) {
-    $('.header').addClass('is-sticky');
-  } else {
-    $('.header').removeClass('is-sticky');
-  }
+jQuery(function ($) {
 });
 
 jQuery(function ($) {
+  
 });
 
 jQuery(function ($) {
@@ -894,10 +925,6 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
-  
-});
-
-jQuery(function ($) {
   var mq = window.matchMedia("(min-width: 767.98px)");
   if (mq.matches) {
     if ($('.js-plan-text').length) {
@@ -906,22 +933,7 @@ jQuery(function ($) {
   }
 });
 
-jQuery(function ($) {
-  $('.js-scroll-to').on('click', function(e) {
-    e.preventDefault();
-
-    var $container = $('#scrollContainer'),
-      $scrollTo = $($($(this).attr('href')));
-    
-    /*$container.scrollTop(
-      $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
-    );*/
-    $container.animate({
-      scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
-    }, 500);
-  });
-});
-
+/*
 var scrollContainer = document.getElementById('scrollContainer');
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -934,5 +946,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 window.addEventListener("beforeunload", function (e) {
   sessionStorage.setItem('scrollpos', scrollContainer.scrollTop);
+});
+*/
+
+jQuery(function ($) {
+  $('.js-scroll-to').on('click', function(e) {
+    e.preventDefault();
+
+    // var $container = $('#scrollContainer'),
+    var $container = $('html, body'),
+      $scrollTo = $($($(this).attr('href')));
+    
+    /*$container.scrollTop(
+      $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
+    );*/
+    /*$container.animate({
+      scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
+    }, 500);*/
+    $container.animate({
+      scrollTop: $scrollTo.offset().top
+    }, 500);
+  });
 });
 

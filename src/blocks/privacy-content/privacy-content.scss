@@ -1,0 +1,60 @@
+.privacy-content {
+
+  p {
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: theme('colors.gray4');
+
+    a {
+      font-size: 14px;
+      line-height: 21px;
+      font-weight: 400;
+      text-decoration: none;
+      letter-spacing: 0;
+      color: theme('colors.gold');
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  ul {
+
+    @apply flex flex-col gap-6;
+
+    li {
+      font-size: 14px;
+      line-height: 21px;
+      font-weight: 400;
+      letter-spacing: 0;
+      color: theme('colors.gray4');
+    }
+  }
+
+  table {
+
+    td {
+      font-size: 14px;
+      line-height: 21px;
+      font-weight: 400;
+      letter-spacing: 0;
+
+      a {
+        font-size: 14px;
+        line-height: 21px;
+        font-weight: 400;
+        text-decoration: none;
+        letter-spacing: 0;
+        color: theme('colors.gold');
+        overflow-wrap: break-word;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
