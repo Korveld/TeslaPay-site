@@ -6,9 +6,10 @@ function shrinkVideoAnimation() {
   // Shrink and move video
   if (mq.matches) {
     var shrinkTween = gsap.to('.video-section__video', {
-      y: '-86',
-      x: '-50%',
+      // y: '-86',
+      // x: '-50%',
       // scale: 0.16,
+      marginTop: '-86',
       width: 226,
       height: 142,
       duration: 1,
@@ -29,8 +30,9 @@ function shrinkVideoAnimation() {
       .addTo(controller);
   } else {
     var shrinkTween = gsap.to('.video-section__video', {
-      y: '2',
+      // y: '2',
       // x: '-50%',
+      marginTop: '2',
       width: 112,
       height: 72,
       duration: 1,
@@ -670,33 +672,6 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
-  $('#contactForm').validate({
-    errorElement: 'span',
-    // errorClass: 'not-valid-tip',
-    rules: {
-      name: {
-        required: true,
-      },
-      email: {
-        required: true,
-        email: true
-      },
-      term1: {
-        required: true,
-      },
-    },
-    messages: {
-    },
-    errorPlacement: function(error, element) {
-      element.parents('.js-field-wrapper').append(error)
-    },
-    submitHandler: function(form) {
-      $(form)[0].submit();
-    }
-  });
-});
-
-jQuery(function ($) {
 
   if (!$.cookie('cookiesAccepted')) {
     $('#cookie-banner').show();
@@ -728,6 +703,33 @@ jQuery(function ($) {
     $('.cookie-banner__overflow').fadeOut(300);
   });
   
+});
+
+jQuery(function ($) {
+  $('#contactForm').validate({
+    errorElement: 'span',
+    // errorClass: 'not-valid-tip',
+    rules: {
+      name: {
+        required: true,
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      term1: {
+        required: true,
+      },
+    },
+    messages: {
+    },
+    errorPlacement: function(error, element) {
+      element.parents('.js-field-wrapper').append(error)
+    },
+    submitHandler: function(form) {
+      $(form)[0].submit();
+    }
+  });
 });
 
 jQuery(function ($) {
@@ -766,6 +768,44 @@ $('.scrollContainer').on('scroll load', function () {
   } else {
     $('.header').removeClass('is-sticky');
   }
+});
+
+jQuery(function ($) {
+
+  var mq = window.matchMedia( "(min-width: 767.98px)" );
+  var mqMob = window.matchMedia( "(max-width: 768px)" );
+  
+  $('.lang-switcher__current').on('click', function (e) {
+    e.preventDefault();
+    $(this).parent().find('.lang-switcher__dropdown').fadeToggle(300);
+    $(this).toggleClass('is-active');
+
+    if (mqMob.matches) {
+      $('.lang-switcher__overflow').fadeIn(300);
+    }
+  });
+
+  $('.lang-switcher__overflow').on('click', function (e) {
+    $('.lang-switcher .lang-switcher__current').removeClass('is-active');
+    $('.lang-switcher .lang-switcher__dropdown').fadeOut(300);
+    $(this).fadeOut(300);
+  });
+
+  $(document).on('click', function (e) {
+    if (!$(e.target).hasClass('lang-switcher') && $(e.target).parents('.lang-switcher').length === 0) {
+      $('.lang-switcher .lang-switcher__current').removeClass('is-active');
+      $('.lang-switcher .lang-switcher__dropdown').fadeOut(300);
+      $('.lang-switcher__overflow').fadeOut(300);
+    }
+  });
+  
+  $('.lang-switcher__dropdown-item').on('mouseenter', function (e) {
+    $(this).siblings('.lang-switcher__dropdown-item').addClass('is-disabled');
+  });
+  $('.lang-switcher__dropdown-item').on('mouseleave', function (e) {
+    $(this).siblings('.lang-switcher__dropdown-item').removeClass('is-disabled');
+  });
+  
 });
 
 jQuery(function ($) {
@@ -855,48 +895,10 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
-
-  var mq = window.matchMedia( "(min-width: 767.98px)" );
-  var mqMob = window.matchMedia( "(max-width: 768px)" );
-  
-  $('.lang-switcher__current').on('click', function (e) {
-    e.preventDefault();
-    $(this).parent().find('.lang-switcher__dropdown').fadeToggle(300);
-    $(this).toggleClass('is-active');
-
-    if (mqMob.matches) {
-      $('.lang-switcher__overflow').fadeIn(300);
-    }
-  });
-
-  $('.lang-switcher__overflow').on('click', function (e) {
-    $('.lang-switcher .lang-switcher__current').removeClass('is-active');
-    $('.lang-switcher .lang-switcher__dropdown').fadeOut(300);
-    $(this).fadeOut(300);
-  });
-
-  $(document).on('click', function (e) {
-    if (!$(e.target).hasClass('lang-switcher') && $(e.target).parents('.lang-switcher').length === 0) {
-      $('.lang-switcher .lang-switcher__current').removeClass('is-active');
-      $('.lang-switcher .lang-switcher__dropdown').fadeOut(300);
-      $('.lang-switcher__overflow').fadeOut(300);
-    }
-  });
-  
-  $('.lang-switcher__dropdown-item').on('mouseenter', function (e) {
-    $(this).siblings('.lang-switcher__dropdown-item').addClass('is-disabled');
-  });
-  $('.lang-switcher__dropdown-item').on('mouseleave', function (e) {
-    $(this).siblings('.lang-switcher__dropdown-item').removeClass('is-disabled');
-  });
   
 });
 
 jQuery(function ($) {
-});
-
-jQuery(function ($) {
-  
 });
 
 jQuery(function ($) {
@@ -925,12 +927,23 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
-  var mq = window.matchMedia("(min-width: 767.98px)");
-  if (mq.matches) {
-    if ($('.js-plan-text').length) {
-      $('.js-plan-text').equalHeights()
-    }
-  }
+  $('.js-scroll-to').on('click', function(e) {
+    e.preventDefault();
+
+    // var $container = $('#scrollContainer'),
+    var $container = $('html, body'),
+      $scrollTo = $($($(this).attr('href')));
+    
+    /*$container.scrollTop(
+      $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
+    );*/
+    /*$container.animate({
+      scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
+    }, 500);*/
+    $container.animate({
+      scrollTop: $scrollTo.offset().top
+    }, 500);
+  });
 });
 
 /*
@@ -950,22 +963,11 @@ window.addEventListener("beforeunload", function (e) {
 */
 
 jQuery(function ($) {
-  $('.js-scroll-to').on('click', function(e) {
-    e.preventDefault();
-
-    // var $container = $('#scrollContainer'),
-    var $container = $('html, body'),
-      $scrollTo = $($($(this).attr('href')));
-    
-    /*$container.scrollTop(
-      $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
-    );*/
-    /*$container.animate({
-      scrollTop: $scrollTo.offset().top - $container.offset().top + $container.scrollTop()
-    }, 500);*/
-    $container.animate({
-      scrollTop: $scrollTo.offset().top
-    }, 500);
-  });
+  var mq = window.matchMedia("(min-width: 767.98px)");
+  if (mq.matches) {
+    if ($('.js-plan-text').length) {
+      $('.js-plan-text').equalHeights()
+    }
+  }
 });
 

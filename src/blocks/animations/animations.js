@@ -6,9 +6,10 @@ function shrinkVideoAnimation() {
   // Shrink and move video
   if (mq.matches) {
     var shrinkTween = gsap.to('.video-section__video', {
-      y: '-86',
-      x: '-50%',
+      // y: '-86',
+      // x: '-50%',
       // scale: 0.16,
+      marginTop: '-86',
       width: 226,
       height: 142,
       duration: 1,
@@ -29,8 +30,9 @@ function shrinkVideoAnimation() {
       .addTo(controller);
   } else {
     var shrinkTween = gsap.to('.video-section__video', {
-      y: '2',
+      // y: '2',
       // x: '-50%',
+      marginTop: '2',
       width: 112,
       height: 72,
       duration: 1,
